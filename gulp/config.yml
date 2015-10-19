@@ -1,0 +1,124 @@
+# Project Name
+  project-name: "hello-world" # For WordPress projects, this must be identical to theme name
+  GA-code: "UA-66481277-1"
+
+# File Paths  
+  rootPath: 
+    src: "./src"
+    dest: "./dist"
+
+# Which tasks?
+ gulp-enable-tasks: 
+    enable_browserSync: true
+    enable_jspm: true
+    enable_scss: true
+    enable_twig: true
+    enable_jade: false
+    enable_fonts: false
+    enable_iconFont: false
+    enable_svgSprite: false
+
+# Config settings for gulp tasks   
+  gulp-tasks: 
+    browserSync: 
+      server: 
+        baseDir: "public"    
+    # =======   
+    # Javascript is compiled via JSPM    
+    # =======
+    js: 
+      src: "js"
+      dest: "js"
+      extractSharedJs: true
+      entries: 
+        app: 
+          - "./app.js"
+        page: 
+          - "./page.js"
+      extensions: 
+        - "js"
+    # =======   
+    # SCSS for stylesheets   
+    # =======    
+    scss: 
+      src: "scss"
+      dest: "css"
+      autoprefixer: 
+        browsers: 
+          - "last 3 version"
+      sass: 
+        indentedSyntax: false
+      extensions: 
+        - "sass"
+        - "scss"
+        - "css"
+    # =======   
+    # Template Engines or Markup
+    # =======       
+    templates: 
+      engine: "twig" #enter 'twig', 'jade', or false.  False means you're just writing HTML
+      src: "twig" 
+      dest: "html"
+      extensions: 
+        - "twig"
+    # =======   
+    # HTML
+    # ======= 
+    html: 
+      src: "html"
+      dest: "./"
+      dataFile: "data/global.json"
+      htmlmin: 
+        collapseWhitespace: true
+      extensions: 
+        - "html"
+        - "json"
+      excludeFolders: 
+        - "layouts"
+        - "shared"
+        - "macros"
+        - "data"
+    # =======   
+    # Images
+    # ======= 
+    images: 
+      src: "img"
+      dest: "img"
+      extensions: 
+        - "jpg"
+        - "png"
+        - "svg"
+        - "gif"
+    # =======   
+    # Fonts 
+    # ======= 
+    fonts: 
+      src: "fonts"
+      dest: "fonts"
+      extensions: 
+        - "woff2"
+        - "woff"
+        - "eot"
+        - "ttf"
+        - "svg"
+    # =======   
+    # Icon Fonts
+    # ======= 
+    iconFont: 
+      src: "icons"
+      dest: "fonts"
+      sassDest: "generated"
+      extensions: 
+        - "woff2"
+        - "woff"
+        - "eot"
+        - "ttf"
+        - "svg"
+    # =======   
+    # SVG Sprites
+    # ======= 
+    svgSprite: 
+      src: "sprites"
+      dest: "img"
+      extensions: 
+        - "svg"

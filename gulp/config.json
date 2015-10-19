@@ -1,0 +1,90 @@
+{
+  "project-name": "hello-world",
+  "GA-code": "UA-66481277-1"
+
+  "rootPath": {
+    "src": "./src",
+    "dest": "./dist"
+  },
+
+  "gulp-tasks": {
+    "browserSync": {
+      "enableTask": true,
+      "server": {
+        "baseDir": "public"
+      }
+    },
+
+    "js": {
+      "src": "js",
+      "dest": "js",
+      "extractSharedJs": true,
+      "entries": {
+        "app": ["./app.js"],
+        "page": ["./page.js"]
+      },
+      "extensions": ["js"]
+    },
+
+    "scss": {
+      "src": "scss",
+      "dest": "css",
+      "autoprefixer": {
+        "browsers": ["last 3 version"]
+      },
+      "sass": {
+        "indentedSyntax": false
+      },
+      "extensions": ["sass", "scss", "css"]
+    },
+
+    "templates": {
+      "engine": "twig",
+      "__comment": "For template engine, enter 'twig', 'jade', or false.  False means you're just writing HTML",
+      "src": "twig",
+      "dest": "html",
+      "extensions": ["twig"]
+    },
+
+    "html": {
+      "enableTask": false,
+      "src": "html",
+      "dest": "./",
+      "dataFile": "data/global.json",
+      "htmlmin": {
+        "collapseWhitespace": true
+      },
+      "extensions": ["html", "json"],
+      "excludeFolders": ["layouts", "shared", "macros", "data"]
+    },
+
+    "images": {
+      "enableTask": true,
+      "src": "img",
+      "dest": "img",
+      "extensions": ["jpg", "png", "svg", "gif"]
+    },
+
+    "fonts": {
+      "enableTask": true,
+      "src": "fonts",
+      "dest": "fonts",
+      "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+    },
+
+    "iconFont": {
+      "enableTask": false,
+      "src": "icons",
+      "dest": "fonts",
+      "sassDest": "generated",
+      "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+    },
+
+    "svgSprite": {
+      "enableTask": false,
+      "src": "sprites",
+      "dest": "images",
+      "extensions": ["svg"]
+    }
+  }
+}
