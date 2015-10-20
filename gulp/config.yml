@@ -12,11 +12,14 @@
     enable_browserSync: true
     enable_jspm: true
     enable_scss: true
-    enable_twig: true
+    enable_twig: true  
     enable_jade: false
+    enable_favicons: false
+    enable_htmlmin: false
     enable_fonts: false
     enable_iconFont: false
     enable_svgSprite: false
+
 
 # Config settings for gulp tasks   
   gulp-tasks: 
