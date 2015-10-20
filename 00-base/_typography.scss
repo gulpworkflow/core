@@ -1,0 +1,123 @@
+/* 
+//=====
+@name: "Typography"
+@slug: base/typography
+@description: [ ]
+@usage: [
+  <h1>h1. Heading</h1>
+  <h2>h2. Heading</h2>
+  <h3>h3-h6. Heading</h3>
+  <hr>
+  <h1 id="paragraph">Paragraph</h1>
+  <p>Lorem ipsum dolor sit amet, <a href="#" title="test link">test link</a> adipiscing elit. Nullam dignissim convallis est. 
+  Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, 
+  gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. M
+  aecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p>
+]
+=====//
+*/
+
+// ===================================================================================
+// Type styles
+// ------------
+/* Good design relies on the consistent & intelligent use of a few type styles. 
+   Define this core set of type styles below, and use them with purpose throughout 
+   this interactive product.  
+
+   It may be a good idea to avoid including color in these mixins. Color largely depends on 
+   state, and therefore should be flexible (eg: link vs. title, active vs. visited, success vs. warning etc). 
+   For some projects though, you should include color below.  You'll need to use your expertise
+   as a designer. 
+*/
+@mixin header-1 {
+  font-size: $base-font-size * 2.25;
+  line-height: 1.2;
+}
+
+@mixin header-2 {
+  font-size: $base-font-size * 1.5;
+  line-height: 1.2;
+}
+
+@mixin header-3 {
+  font-size: $base-font-size * 1;
+  line-height: 1.2;
+}
+
+@mixin body-copy {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+// ===================================================================================
+// Core typographic selectors
+// ------------
+// 
+html {
+  font-size: $root-font-size;
+}
+
+body {
+  @include body-copy;
+  color: $base-font-color;
+  font-feature-settings: "kern", "liga", "pnum";
+  text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+h1,.h1 {
+  @include header-1;
+  margin: 0 0 $small-spacing;
+}
+
+h2,.h2 {
+  @include header-2;
+  margin: 0 0 $small-spacing;
+}
+
+h3,.h3 {
+  @include header-3;
+  margin: 0 0 $small-spacing;
+}
+
+// only user h4-h6 selectively.  h5, // Most apps don't need 6 headings; 3 should be sufficient
+h4,h5,h6 
+{
+  @include header-3;
+  margin: 0 0 $small-spacing;
+}
+
+p {
+  margin: 0 0 $small-spacing;
+}
+
+a {
+  color: $ui-color-action;
+  text-decoration: none;
+  transition: color $base-duration $base-timing;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: $ui-color-action-hover;
+  }
+
+  &:visited {
+    // add a visited style to links, its good UX
+  }
+}
+
+hr {
+  border-bottom: $base-border;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: $base-spacing 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
