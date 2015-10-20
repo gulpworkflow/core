@@ -1,0 +1,48 @@
+{
+  "name": "gulp-starter",
+  "version": "1.0.0",
+  "description": "start a new project quickly! Inspired by https://github.com/mrhenry/gulp-starter and https://github.com/vigetlabs/gulp-starter",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ripestudios/gulp-starter.git"
+  },
+  "keywords": [
+    "gulp",
+    "starter",
+    "front-end",
+    "web",
+    "development",
+    "scss",
+    "js",
+    "jade"
+  ],
+  "author": "Paul Best <paul@ripe.com> (http://ripe.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ripestudios/gulp-starter/issues"
+  },
+  "homepage": "https://github.com/ripestudios/gulp-starter#readme",
+  "dependencies": {
+    "browser-sync": "^2.9.11",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-changed": "^1.3.0",
+    "gulp-data": "^1.2.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-sass-bulk-import": "^0.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-twig": "^0.4.0",
+    "marked": "^0.3.5",
+    "path": "^0.12.7",
+    "require-dir": "^0.3.0",
+    "yamljs": "^0.2.4"
+  }
+}

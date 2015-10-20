@@ -1,8 +1,10 @@
 .DS_Store
 .sass-cache
 .publish
+dist
 public
 Desktop.ini
 node_modules
 **/generated/_icons.sass
 npm-debug.log
+gulp/untitled_folder

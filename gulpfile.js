@@ -10,7 +10,16 @@
   when you run `gulp`.
 */
 
-var requireDir = require('require-dir');
+var requireDir        = require('require-dir');
 
 // Require all tasks in gulp/tasks, including subfolders
 requireDir('./gulp/tasks', { recurse: true });
+
+/*var gulp = require('gulp');
+var yaml = require('yamljs');
+
+
+gulp.task('default', function() {
+  config = yaml.load('gulp/config.yml').sass;
+  console.log(config);
+});*/
