@@ -12,6 +12,7 @@ var gulp         = require('gulp');
 var jade         = require('gulp-jade');
 var twig         = require('gulp-twig');
 var marked       = require('marked'); // For :markdown filter in jade
+var handleErrors = require('../util/handleErrors');
 var data         = require('gulp-data'); 
 var browserSync  = require('browser-sync');
 var path         = require('path');
@@ -29,43 +30,49 @@ var getTemplateData = function(file,data_folderName) {
   template_data_filename = path.basename(file.path, template_data_extName) + '.json'
   template_data_filePath = template_data_dirname + "/" + template_data_filename;
   template_data = require(template_data_filePath);
-  console.log(template_data);
+  //console.log(template_data);
   return template_data;
 }
 // =======   
 // Tasks:
 // ======= 
 gulp.task('compile-templates', function() {
-  // No template engine
-  if(config.engine === false) { 
-   	return false;  // If the template engine is false, than its just HTML no templates
-  }
-  // Jade
-  else if(config.engine === 'jade') {
-    gulp.src(config.jade.src)
-    .pipe(data(function(file) {
-      return getTemplateData(file,config.jade.data_folderName);
-      //console.log('sdf' + getTemplateData(file,config.jade.data_folderName))
-    }))
-    .pipe(jade({
-      pretty: true
-    }))
-    .pipe(gulp.dest(config.jade.dest))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
-  }
-  // Twig 
-  else if(config.engine === 'twig') { 
-  	gulp.src(config.twig.src)
-  	.pipe(data(function(file) {
-      return getTemplateData(file,config.twig.data_folderName);
-    }))
-    .pipe(twig())
-    .pipe(gulp.dest(config.twig.dest))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
+  if(config.enable_task) {
+    // No template engine
+    if(config.engine === false) { 
+     	return false;  // If the template engine is false, than its just HTML no templates
+    }
+    // Jade
+    else if(config.engine === 'jade') {
+      gulp.src(config.jade.src)
+      .pipe(data(function(file) {
+        return getTemplateData(file,config.jade.data_folderName);
+        //console.log('sdf' + getTemplateData(file,config.jade.data_folderName))
+      }))
+      .pipe(jade({
+        pretty: true
+      }))
+      .on('error', handleErrors)
+      .pipe(gulp.dest(config.jade.dest))
+      .pipe(browserSync.reload({
+        stream: true
+      }));
+    }
+    // Twig 
+    else if(config.engine === 'twig') { 
+    	gulp.src(config.twig.src)
+    	.pipe(data(function(file) {
+        return getTemplateData(file,config.twig.data_folderName);
+      }))
+      .pipe(twig())
+      .on('error', handleErrors)
+      .pipe(gulp.dest(config.twig.dest))
+      .pipe(browserSync.reload({
+        stream: true
+      }));
+    }
+  } else {
+    console.log('template processing disabled via config.yml');
   }
 });
 

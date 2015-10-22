@@ -3,22 +3,25 @@
 # Project Details 
 #
 # =======   
-projectName: "hello-world"                          # For WordPress projects, this must be identical to theme name
+projectName: "hello-world"                          # For WordPress projects, this will be the theme name
 GAcode: null                                        # Google Analytics code eg -"UA-66481277-1"
 # ======= 
 #  
 # BrowserSync for live-reloading  
 #
 # =======   
-browserSync: 
+browserSync:
+  enable_task: true                                 # Turn this task on/off at will!  
   server: 
-    baseDir: "dist"    
+    baseDir: "build"                                 # Base directory of web files you wanted to serve in browser 
+    index: "index.html"                             # What is the index file?   
 # ======= 
 #  
 # Javascript is compiled via JSPM    
 #
 # =======
-js: 
+js:
+  enable_task: true                                 # Turn this task on/off at will!  
   src: "js"
   dest: "js"
   extractSharedJs: true
@@ -34,9 +37,10 @@ js:
 # SASS/SCSS for stylesheets   
 #
 # =======    
-sass: 
+sass:
+  enable_task: true                                 # Turn this task on/off at will!   
   src: "./src/scss/*.scss"                          # Source path(s) for the gulp-sass pipe
-  dest: "./dist/css"                                # Path to write compiled CSS
+  dest: "./build/css"                                # Path to write compiled CSS
   watch: "./src/scss/*.scss"                        # Which file(s) should the wask task keep an eye on?
   autoprefix_browsers: ['last 2 version', 'ie 9']   # Browser settings based on gulp-autoprefixer config
   settings:                                         # settings for gulp-sass
@@ -47,8 +51,9 @@ sass:
 # Jade/Twig for markup template engines   
 #
 # =======       
-templates: 
-  engine: 'jade'                                    # enter 'twig', 'jade', or false.  False means you're just writing HTML
+templates:
+  enable_task: true                                 # Turn this task on/off at will!  
+  engine: 'twig'                                    # enter 'twig', 'jade', or false.  False means you're just writing HTML
                                                     # if you enter false the remaining settings will be ignored as the task will return
                                                     # FYI - if you're using WordPress or PHP to compile twig set this to false!  
   twig:
@@ -67,34 +72,38 @@ templates:
 #
 # =======  
 html:
+  enable_task: true                                 # Turn this task on/off at will! 
   src: "./src/html/*.html"                          # Path for HTML
-  dest: "./dist/"                                   # Where should HTML go?
+  dest: "./build/"                                   # Where should HTML go?
   watch: "./src/html/*.html"                        # Watch for changes to process HTML
 # =======   
 #
 # Optimize PNG, JPEG, GIF and SVG for web   
 #
 # =======  
-images: 
+images:
+  enable_task: true                                 # Turn this task on/off at will!  
   src: "./src/img/**"                               # Path where you will drop images
-  dest: "./dist/img"                                # Path for images after minification (on change)
+  dest: "./build/img"                                # Path for images after minification (on change)
 # =======   
 #
 # Generate Favicons for any modern web app 
 #
 # =======  
 favicon:
+  enable_task: true                                 # Turn this task on/off at will! 
   src: "./src/favicon/favicon_raw@260x260.png"      # Path(s) for file to produce the favicons. 
                                                     # Image should be min 260x260!!
-  dest: "./dist/favicons"                           # Path for writing the favicons to
+  dest: "./build/favicons"                           # Path for writing the favicons to
   html: "./src/favicon/"                            # Path(s) for HTML file to write or append metadata
-  iconsPath: "../dist/favicons"                     # Path for overriding default icons path 
+  iconsPath: "../build/favicons"                     # Path for overriding default icons path 
 # =======   
 #
 # Prep fonts for @font-face   
 #
 # =======  
-fonts: 
+fonts:
+  enable_task: true                                 # Turn this task on/off at will!  
   src: "fonts"
   dest: "fonts"
   extensions: 
@@ -108,19 +117,22 @@ fonts:
 # Generate Icon Font from SVGs
 #
 # =======  
-iconFont: 
-  src: "./src/icons/*.svg"                            # Path of the raw icons (as SVG)                    
-  sassOutput: "../../src/scss/00-base/_icons.scss"    # Where does the SASS partial go? (relative to fontDest below) 
-  fontPath: "../fonts"                                # Relative path of fonts to processed CSS (eg, this is where @font-face points)
-  fontDest: "dist/fonts"                              # This is where the icon-font gulp pipe spits the webfont files
-  className: "icon"                                   # Basis of the icons' class in CSS
-  template: "gulp/tasks/iconFont/_template.scss"      # This is the basis of the generated SASS partial
+iconFont:
+  enable_task: true                                 # Turn this task on/off at will!  
+  src: "./src/icons/*.svg"                          # Path of the raw icons (as SVG)
+  base: "../src"                                    # Base of the application's asset source relative to where fonts are going                    
+  sassOutput: "../../src/scss/00-base/_icons.scss"  # Where does the SASS partial go? (relative to fontDest below) 
+  fontPath: "../fonts"                              # Relative path of fonts to processed CSS (eg, this is where @font-face points)
+  fontDest: "build/fonts"                            # This is where the icon-font gulp pipe spits the webfont files
+  className: "icon"                                 # Basis of the icons' class in CSS
+  template: "gulp/tasks/iconFont/_template.scss"    # This is the basis of the generated SASS partial
 # =======   
 #
 # Create a sprite for speedy web use
 #
 # =======  
-svgSprite: 
+svgSprite:
+  enable_task: true                                 # Turn this task on/off at will!  
   src: "sprites"
   dest: "img"
   extensions: 

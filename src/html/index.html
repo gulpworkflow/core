@@ -14,5 +14,18 @@
   <body>
     Hello World
     <!--Javascript goes here -->
+    <!-- DEV MODE -->
+    <script src="../src/js/jspm_packages/system.js"></script>
+    <script src="../src/js/config.js"></script>
+    <script>
+      System.import('../src/js/lib/main')
+    </script>
+
+     <!-- PRODUCTION MODE -->
+    <!-- to generate build.js, run: jspm bundle-sfx --minify lib/main -->
+    <!--
+    <script src="jspm_packages/traceur-runtime.js"></script>
+    <script src="build.js"></script>
+    -->
   </body>
  </html>

@@ -21,16 +21,23 @@ var cssbeautify  = require('gulp-cssbeautify');
 // Tasks:
 // ======= 
 gulp.task('sass', function () {
-  return gulp.src(config.src)
-    .pipe(plumber())
-    .pipe(bulkSass())
-    .pipe(sourcemaps.init())
-    .pipe(sass(config.settings))
-    .on('error', handleErrors)
-    .pipe(cssbeautify()) // we're beautifying the CSS so that when we import in into StyleStrap it is readable
-    .pipe(autoprefixer({ browsers: config.autoprefix_browsers }))
-    .pipe(sourcemaps.write('./'))
-    .on('error', handleErrors)
-    .pipe(gulp.dest(config.dest))
-    .pipe(browserSync.reload({stream:true}));
+   if(config.enable_task) {   
+      return gulp.src(config.src)
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+        .pipe(through(function () {
+            this.emit("error", new Error("Something happend: Error message!"))
+        }))
+        .pipe(bulkSass()) // allows for eg - '@import modules/**/*' 
+        .pipe(sourcemaps.init())
+        .pipe(sass(config.settings))
+        .on('error', handleErrors)
+        .pipe(cssbeautify()) // we're beautifying the CSS so that when we import in into StyleStrap it is readable
+        .pipe(autoprefixer({ browsers: config.autoprefix_browsers }))
+        .pipe(sourcemaps.write('./')) // write sourcemaps to external file
+        .on('error', handleErrors)
+        .pipe(gulp.dest(config.dest))
+        .pipe(browserSync.reload({stream:true}));
+    } else {
+        console.log('sass processing disabled via config.yml');
+    }
 });

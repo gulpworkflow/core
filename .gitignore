@@ -2,9 +2,14 @@
 .sass-cache
 .publish
 dist
-public
+build/
 Desktop.ini
+jspm_packages
 node_modules
-**/generated/_icons.sass
 npm-debug.log
+**/generated/_icons.sass
 gulp/untitled_folder
+
+# Ignore everything in Build folder except the JSPM conig.js file
+build/*
+!build/js/config.js

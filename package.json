@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "gulp-iconfont-css": "^2.0.0",
+    "jspm": "^0.16.13",
     "lodash": "^3.10.1"
   }
 }
