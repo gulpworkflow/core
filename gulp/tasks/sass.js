@@ -16,6 +16,7 @@ var sourcemaps   = require('gulp-sourcemaps');
 var handleErrors = require('../util/handleErrors');
 var autoprefixer = require('gulp-autoprefixer');
 var bulkSass     = require('gulp-sass-bulk-import');
+var cssbeautify  = require('gulp-cssbeautify');
 // =======   
 // Tasks:
 // ======= 
@@ -26,8 +27,10 @@ gulp.task('sass', function () {
     .pipe(sourcemaps.init())
     .pipe(sass(config.settings))
     .on('error', handleErrors)
-    .pipe(sourcemaps.write())
+    .pipe(cssbeautify()) // we're beautifying the CSS so that when we import in into StyleStrap it is readable
     .pipe(autoprefixer({ browsers: config.autoprefix_browsers }))
+    .pipe(sourcemaps.write('./'))
+    .on('error', handleErrors)
     .pipe(gulp.dest(config.dest))
     .pipe(browserSync.reload({stream:true}));
 });

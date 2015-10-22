@@ -3,8 +3,8 @@
 # Project Details 
 #
 # =======   
-project-name: "hello-world" # For WordPress projects, this must be identical to theme name
-GA-code: null  #eg -"UA-66481277-1"
+projectName: "hello-world" # For WordPress projects, this must be identical to theme name
+GAcode: null               # Google Analytics code eg -"UA-66481277-1"
 # ======= 
 #  
 # BrowserSync for live-reloading  
@@ -12,7 +12,7 @@ GA-code: null  #eg -"UA-66481277-1"
 # =======   
 browserSync: 
   server: 
-    baseDir: "public"    
+    baseDir: "dist"    
 # ======= 
 #  
 # Javascript is compiled via JSPM    
@@ -35,47 +35,59 @@ js:
 #
 # =======    
 sass: 
-  src: "./src/scss/*.scss"
-  dest: "./public/css"
-  watch: "./src/scss/*.scss"
-  autoprefix_browsers: ['last 2 version', 'ie 9']
-  settings: 
-    indentedSyntax: false # Set to true if you want to use sass indented syntax
-    errLogToConsole: errLogToConsole
+  src: "./src/scss/*.scss"                          # Source path(s) for the gulp-sass pipe
+  dest: "./dist/css"                                # Path to write compiled CSS
+  watch: "./src/scss/*.scss"                        # Which file(s) should the wask task keep an eye on?
+  autoprefix_browsers: ['last 2 version', 'ie 9']   # Browser settings based on gulp-autoprefixer config
+  settings:                                         # settings for gulp-sass
+    indentedSyntax: false                           # Set to true if you want to use sass indented syntax
+    errLogToConsole: errLogToConsole                #
 # =======   
 #
-# Jade/Twig for template engines   
+# Jade/Twig for markup template engines   
 #
 # =======       
 templates: 
-  engine: 'twig' #enter 'twig', 'jade', or false.  False means you're just writing HTML
+  engine: 'jade' #enter 'twig', 'jade', or false.  False means you're just writing HTML
                 #if you enter false the remaining settings will be ignored as the task will return
   twig:
     src: "./src/twig/*.twig"  
     dest: "./src/html"
     watch: "./src/twig/*.twig"
-    data: "./src/twig/data"
+    data_folderName: "data" #name of folder where the data lives, relative to templates
   jade:
     src: "./src/jade/*.jade"  
     dest: "./src/html"
     watch: "./src/jade/*.jade"
-    data: "./src/jade/data"
-
+    data_folderName: "data" #name of folder where the data lives, relative to templates
+# =======   
+#
+# HTML
+#
+# =======  
+html:
+  src: "./src/html/*.html"     # Path for HTML
+  dest: "./dist/"              # Where should HTML go?
+  watch: "./src/html/*.html"   # Watch for changes to process HTML
 # =======   
 #
 # Optimize PNG, JPEG, GIF and SVG for web   
 #
 # =======  
 images: 
-  src: "./src/img/**"
-  dest: "./public/img"
+  src: "./src/img/**" # Path where you will drop images
+  dest: "./dist/img"  # Path for images after minification (on change)
 # =======   
 #
 # Generate Favicons for any modern web app 
 #
 # =======  
 favicon:
-  src: "test"    
+  src: "./src/favicon/favicon_raw@260x260.png"    # Path(s) for file to produce the favicons. 
+                                                  # Image should be min 260x260!!
+  dest: "./dist/favicons"                         # Path for writing the favicons to
+  html: "./src/favicon/"                          # Path(s) for HTML file to write or append metadata
+  iconsPath: "../dist/favicons"                   # Path for overriding default icons path 
 # =======   
 #
 # Prep fonts for @font-face   
@@ -96,15 +108,12 @@ fonts:
 #
 # =======  
 iconFont: 
-  src: "icons"
-  dest: "fonts"
-  sassDest: "generated"
-  extensions: 
-    - "woff2"
-    - "woff"
-    - "eot"
-    - "ttf"
-    - "svg"
+  src: "./src/icons/*.svg"                            # Path of the raw icons (as SVG)                    
+  sassOutput: "../../src/scss/00-base/_icons.scss"    # Where does the SASS partial go? (relative to fontDest below) 
+  fontPath: "../fonts"                                # Relative path of fonts to processed CSS (eg, this is where @font-face points)
+  fontDest: "dist/fonts"                              # This is where the icon-font gulp pipe spits the webfont files
+  className: "icon"                                   # Basis of the icons' class in CSS
+  template: "gulp/tasks/iconFont/_template.scss"      # This is the basis of the generated SASS partial
 # =======   
 #
 # Create a sprite for speedy web use

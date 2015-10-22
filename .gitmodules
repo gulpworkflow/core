@@ -4,3 +4,6 @@
 [submodule "src/scss"]
 	path = src/scss
 	url = https://github.com/ripestudios/scss-starter.git
+[submodule "src/icons"]
+	path = src/icons
+	url = https://github.com/ripestudios/ui-icons-svg.git
