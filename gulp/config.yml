@@ -3,8 +3,8 @@
 # Project Details 
 #
 # =======   
-projectName: "hello-world" # For WordPress projects, this must be identical to theme name
-GAcode: null               # Google Analytics code eg -"UA-66481277-1"
+projectName: "hello-world"                          # For WordPress projects, this must be identical to theme name
+GAcode: null                                        # Google Analytics code eg -"UA-66481277-1"
 # ======= 
 #  
 # BrowserSync for live-reloading  
@@ -48,46 +48,47 @@ sass:
 #
 # =======       
 templates: 
-  engine: 'jade' #enter 'twig', 'jade', or false.  False means you're just writing HTML
-                #if you enter false the remaining settings will be ignored as the task will return
+  engine: 'jade'                                    # enter 'twig', 'jade', or false.  False means you're just writing HTML
+                                                    # if you enter false the remaining settings will be ignored as the task will return
+                                                    # FYI - if you're using WordPress or PHP to compile twig set this to false!  
   twig:
-    src: "./src/twig/*.twig"  
-    dest: "./src/html"
-    watch: "./src/twig/*.twig"
-    data_folderName: "data" #name of folder where the data lives, relative to templates
+    src: "./src/twig/*.twig"                        # twig pulls these files when compiling html
+    dest: "./src/html"                              # destination of compiled html
+    watch: "./src/twig/*.twig"                      # changes to these files will invoke the twig compile task 
+    data_folderName: "data"                         # name of folder where the data lives, relative to templates
   jade:
-    src: "./src/jade/*.jade"  
-    dest: "./src/html"
-    watch: "./src/jade/*.jade"
-    data_folderName: "data" #name of folder where the data lives, relative to templates
+    src: "./src/jade/*.jade"                        # jade pulls these files when compiling html
+    dest: "./src/html"                              # destination of compiled html
+    watch: "./src/jade/*.jade"                      # changes to these files will invoke the jade compile task  
+    data_folderName: "data"                         # name of folder where the data lives, relative to templates
 # =======   
 #
 # HTML
 #
 # =======  
 html:
-  src: "./src/html/*.html"     # Path for HTML
-  dest: "./dist/"              # Where should HTML go?
-  watch: "./src/html/*.html"   # Watch for changes to process HTML
+  src: "./src/html/*.html"                          # Path for HTML
+  dest: "./dist/"                                   # Where should HTML go?
+  watch: "./src/html/*.html"                        # Watch for changes to process HTML
 # =======   
 #
 # Optimize PNG, JPEG, GIF and SVG for web   
 #
 # =======  
 images: 
-  src: "./src/img/**" # Path where you will drop images
-  dest: "./dist/img"  # Path for images after minification (on change)
+  src: "./src/img/**"                               # Path where you will drop images
+  dest: "./dist/img"                                # Path for images after minification (on change)
 # =======   
 #
 # Generate Favicons for any modern web app 
 #
 # =======  
 favicon:
-  src: "./src/favicon/favicon_raw@260x260.png"    # Path(s) for file to produce the favicons. 
-                                                  # Image should be min 260x260!!
-  dest: "./dist/favicons"                         # Path for writing the favicons to
-  html: "./src/favicon/"                          # Path(s) for HTML file to write or append metadata
-  iconsPath: "../dist/favicons"                   # Path for overriding default icons path 
+  src: "./src/favicon/favicon_raw@260x260.png"      # Path(s) for file to produce the favicons. 
+                                                    # Image should be min 260x260!!
+  dest: "./dist/favicons"                           # Path for writing the favicons to
+  html: "./src/favicon/"                            # Path(s) for HTML file to write or append metadata
+  iconsPath: "../dist/favicons"                     # Path for overriding default icons path 
 # =======   
 #
 # Prep fonts for @font-face   
