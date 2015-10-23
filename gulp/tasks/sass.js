@@ -17,6 +17,8 @@ var handleErrors = require('../util/handleErrors');
 var autoprefixer = require('gulp-autoprefixer');
 var bulkSass     = require('gulp-sass-bulk-import');
 var cssbeautify  = require('gulp-cssbeautify');
+var notify       = require('gulp-notify');
+var through      = require('gulp-through');
 // =======   
 // Tasks:
 // ======= 
@@ -24,9 +26,6 @@ gulp.task('sass', function () {
    if(config.enable_task) {   
       return gulp.src(config.src)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(through(function () {
-            this.emit("error", new Error("Something happend: Error message!"))
-        }))
         .pipe(bulkSass()) // allows for eg - '@import modules/**/*' 
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
@@ -34,7 +33,6 @@ gulp.task('sass', function () {
         .pipe(cssbeautify()) // we're beautifying the CSS so that when we import in into StyleStrap it is readable
         .pipe(autoprefixer({ browsers: config.autoprefix_browsers }))
         .pipe(sourcemaps.write('./')) // write sourcemaps to external file
-        .on('error', handleErrors)
         .pipe(gulp.dest(config.dest))
         .pipe(browserSync.reload({stream:true}));
     } else {
