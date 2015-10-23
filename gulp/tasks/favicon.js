@@ -53,26 +53,28 @@ var favicon_config = {
 // Tasks:
 // =======
 gulp.task('favicon', function() {
-  favicons({
-    // I/O
-    source: 'src/favicon/favicon-1024x1024.png',
-    dest: 'dist',
+  if(config.enable_task) {   
+      favicons({
+        // I/O
+        source: 'src/favicon/favicon-1024x1024.png',
+        dest: 'dist',
 
-    // Icon Types
-    android: true,
-    apple: true,
-    coast: true,
-    favicons: true,
-    firefox: true,
-    opengraph: false,
-    windows: true,
+        // Icon Types
+        android: true,
+        apple: true,
+        coast: true,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        windows: true,
 
-    // Miscellaneous
-    html: 'dist/index.html',
-    background: 'transparent',
-    tileBlackWhite: false,
-    manifest: null,
-    trueColor: false,
-    logging: true
-  });
+        // Miscellaneous
+        html: 'dist/index.html',
+        background: 'transparent',
+        tileBlackWhite: false,
+        manifest: null,
+        trueColor: false,
+        logging: true
+      });
+  }  
 });

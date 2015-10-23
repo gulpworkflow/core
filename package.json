@@ -45,6 +45,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
     "gulp-sass-bulk-import": "^0.3.2",
+    "gulp-sequence": "^0.4.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-swig": "^0.7.4",
     "gulp-twig": "^0.4.0",

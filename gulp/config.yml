@@ -6,6 +6,25 @@
 projectName: "hello-world"                          # For WordPress projects, this will be the theme name
 GAcode: null                                        # Google Analytics code eg -"UA-66481277-1"
 
+# ======= 
+# Default task list:
+# When you run the default task, the following tasks are executed (in order) before we begin watching
+# Tasks grouped are run in parallel.  Tasks separated by comma are run in sequence
+# Eg:
+# ['a', 'b'], 'c'
+#  1. run 'a', 'b' in parallel; 
+#  2. run 'c' after 'a' and 'b'
+# 
+default_task_list: 
+  - 'clean'
+  - ['images', 'iconFont', 'favicon']
+  - ['twig', 'nunjucks', 'jade']
+  - ['jspm_lib', 'sass']
+  - 'hypertext'
+  - 'browserSync'
+  - 'watch'
+#
+# ======= 
 tasks:
   # ======= 
   #  
@@ -56,7 +75,7 @@ tasks:
   # =======   
   #
   # Use a template engine for HTML
-  # --------------------------------- 
+  # ---------------------------------------------------------------------------------------------------------------------
   # Be VERY careful if you enable more than 1!
   # You may be overwritting yourself in the "build" folder
   # eg - index.twig and index.jade may each overwrite the other's 'index.html' if they have the same destination ('dest')
@@ -66,7 +85,7 @@ tasks:
   # Jade
   # =======   
   jade:
-    enable_task: true                               # Turn this task on/off at will!  
+    enable_task: false                               # Turn this task on/off at will!  
     src: "./src/jade/*.jade"                        # jade pulls these files when compiling html
     dest: "./src/html"                              # destination of compiled html
     watch: "./src/jade/*.jade"                      # changes to these files will invoke the jade compile task  
@@ -79,7 +98,7 @@ tasks:
   # Twig
   # =======   
   twig:
-    enable_task: false                              # Turn this task on/off at will!  
+    enable_task: true                              # Turn this task on/off at will!  
     src: "./src/twig/*.twig"                        # twig pulls these files when compiling html
     dest: "./src/html"                              # destination of compiled html
     watch: "./src/twig/*.twig"                      # changes to these files will invoke the twig compile task  
@@ -100,6 +119,8 @@ tasks:
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
       src: "./src/nunjucks/*.html"                            # If so, what's the source (most likely same as task src)
+  #
+  # ------------------------------------------------------------------------------------------------------------------     
   # =======   
   #
   # Hypertext (HTML,PHP, whatever you want)
