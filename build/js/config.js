@@ -11,4 +11,3 @@ System.config({
   }
 });
 
-sdf
