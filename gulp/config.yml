@@ -100,7 +100,7 @@ tasks:
   twig:
     enable_task: true                              # Turn this task on/off at will!  
     src: "./src/twig/*.twig"                        # twig pulls these files when compiling html
-    dest: "./src/html"                              # destination of compiled html
+    dest: "./build/"                              # destination of compiled html
     watch: "./src/twig/*.twig"                      # changes to these files will invoke the twig compile task  
     data_folderName: "data"                         # name of folder where the data lives, relative to templates
     watch_task:                                            
