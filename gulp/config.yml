@@ -17,21 +17,15 @@ browserSync:
     index: "index.html"                             # What is the index file?   
 # ======= 
 #  
-# Javascript is compiled via JSPM    
+# Javascript is managed via JSPM    
 #
 # =======
-js:
+jspm_lib:
   enable_task: true                                 # Turn this task on/off at will!  
-  src: "js"
-  dest: "js"
-  extractSharedJs: true
-  entries: 
-    app: 
-      - "./app.js"
-    page: 
-      - "./page.js"
-  extensions: 
-    - "js"
+  src: "./src/js/*.js"
+  dest:
+    build: "./build/js/lib"
+    dist: "./dist/js"
 # =======   
 #
 # SASS/SCSS for stylesheets   
