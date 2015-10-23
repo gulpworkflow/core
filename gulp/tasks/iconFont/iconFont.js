@@ -5,7 +5,7 @@
 // =======  
 var yaml             = require('yamljs');
 var global_config    = yaml.load('gulp/config.yml');
-var config           = global_config.iconFont;
+var config           = global_config.tasks.iconFont;
 config.name          = global_config.projectName;
 // =======   
 // Dependencies
@@ -21,7 +21,7 @@ var handleErrors     = require('../../util/handleErrors');
 var runTimestamp     = Math.round(Date.now()/1000);
 var fontName         = config.name+'-icons';
 
-gulp.task('iconfont', function(){
+gulp.task('iconFont', function(){
 if(config.enable_task) {  
   gulp.src([config.src],{base: config.base})
     .pipe(iconfontCss({

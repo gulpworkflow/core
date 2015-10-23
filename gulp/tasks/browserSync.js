@@ -5,7 +5,7 @@
 // =======  
 var yaml             = require('yamljs');
 var global_config    = yaml.load('gulp/config.yml');
-var config           = global_config.browserSync;
+var config           = global_config.tasks.browserSync;
     config.name      = global_config.projectName;
 // =======   
 // Dependencies
