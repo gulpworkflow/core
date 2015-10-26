@@ -19,8 +19,8 @@ var notify       = require("gulp-notify");
 // =======   
 // Util Functions:
 // ======= 
-var handleErrors = require('../../util/handleErrors');
-var getTemplateData = require('../../util/getTemplateData');
+var handleErrors = require('../util/handleErrors');
+var getTemplateData = require('../util/getTemplateData');
 
 // =======   
 // Tasks:

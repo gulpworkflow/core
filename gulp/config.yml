@@ -1,29 +1,13 @@
 # ======= 
 #  
-# Project Details 
+# 1) Project Details 
 #
 # =======   
 projectName: "hello-world"                          # For WordPress projects, this will be the theme name
 GAcode: null                                        # Google Analytics code eg -"UA-66481277-1"
 # ======= 
-#  
-# Build location:
-# Note: this does not automatically set the destination for sass/templating tasks. We want to maintain
-# flexibility to customize those locations individually throughout this config file. 
-# If you want to change that system-wide do a find + replace in this document for
-# "build" (Default location) and replace it with whatever the new location is.  
-#
-# The files in this location are mostly generated automatically by gulp and will be deleted each time you start
-# the build server.  Explicitly state which files should not be deleted below. 
-#
-# =======
-build:                                    
-  dest: "./build"                                    # Where is your build envirnment stored?
-  dont_clean:                                        # These files will left alone when "cleaning" or deleting the contents of build. 
-    - "./build/js/config.js"                         # JSPM config needs to be in version control & build folder
-    - "./build/js/jspm_modules"                      # No need to reinstall jspm modules every time you run the build server
-# ======= 
-# Default task list:
+# 2) Default Build tasks:
+# ---
 # When you run the default task, the following tasks are executed (in order) before we begin watching
 # Tasks grouped are run in parallel.  Tasks separated by comma are run in sequence
 # Eg:
@@ -31,9 +15,9 @@ build:
 #  1. run 'a', 'b' in parallel; 
 #  2. run 'c' after 'a' and 'b'
 # 
-default_task_list: 
+default_build_order: 
   - 'clean:build'
-  - ['images', 'iconFont', 'favicon']
+  - ['images:move', 'iconFont', 'favicon']
   - ['twig', 'nunjucks', 'jade']
   - ['jspm_lib', 'sass']
   - 'hypertext'
@@ -41,6 +25,8 @@ default_task_list:
   - 'watch'
 #
 # ======= 
+# 3) Task config
+# ---
 tasks:
   # ======= 
   #  
@@ -49,9 +35,11 @@ tasks:
   # =======   
   browserSync:
     enable_task: true                                 # Turn this task on/off at will!  
+    # ---
     server: 
       baseDir: "build"                                # Base directory of web files you wanted to serve in browser 
       index: "index.html"                             # What is the index file?   
+    # ---
     watch_task:                                            
       enable: false                                   # Should a watch task be created?
       src: null                                       # If so, what's the source (most likely same as task src)
@@ -63,10 +51,14 @@ tasks:
   # =======
   jspm_lib:
     enable_task: true                                 # Turn this task on/off at will!  
+    # ---
     src: "./src/js/*.js"
     dest:
       build: "./build/js/lib"
       dist: "./dist/js"
+    # ---
+    clean: "./build/js/lib/*.js"                      # These are deleted & re-generated every time you run "gulp"
+    # ---
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
       src: "./src/js/*.js"                            # If so, what's the source (most likely same as task src)
@@ -77,13 +69,17 @@ tasks:
   # =======    
   sass:
     enable_task: true                                 # Turn this task on/off at will!   
+    # ---
     src: "./src/scss/*.scss"                          # Source path(s) for the gulp-sass pipe
-    dest: "./build/css"                                # Path to write compiled CSS
-    watch: "./src/scss/*.scss"                        # Which file(s) should the wask task keep an eye on?
+    dest: "./build/css"                               # Path to write compiled CSS
+    # ---
+    clean: "./build/css/"                             # Which file(s) should be deleted each time before gulp runs?                            
+    # ---
     autoprefix_browsers: ['last 2 version', 'ie 9']   # Browser settings based on gulp-autoprefixer config
     settings:                                         # settings for gulp-sass
       indentedSyntax: false                           # Set to true if you want to use sass indented syntax
       errLogToConsole: errLogToConsole                #
+    # ---
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
       src: "./src/scss/*.scss"                        # If so, what's the source (most likely same as task src)
@@ -102,10 +98,14 @@ tasks:
   # =======   
   jade:
     enable_task: false                               # Turn this task on/off at will!  
+    # ---
     src: "./src/jade/*.jade"                        # jade pulls these files when compiling html
     dest: "./src/html"                              # destination of compiled html
-    watch: "./src/jade/*.jade"                      # changes to these files will invoke the jade compile task  
+    # ---
+    clean: null                                     # If you are compiling jade into html, leave clean as a "null",
+    # ---                                           # nothing gets cleaned since there are no build files.
     data_folderName: "data"                         # name of folder where the data lives, relative to templates
+    # ---
     watch_task:                                            
       enable: true                                  # Should a watch task be created?
       src: "./src/jade/*.jade"                      # If so, what's the source (most likely same as task src)
@@ -114,11 +114,15 @@ tasks:
   # Twig
   # =======   
   twig:
-    enable_task: true                              # Turn this task on/off at will!  
+    enable_task: true                               # Turn this task on/off at will!  
+    # ---
     src: "./src/twig/*.twig"                        # twig pulls these files when compiling html
-    dest: "./build/"                              # destination of compiled html
-    watch: "./src/twig/*.twig"                      # changes to these files will invoke the twig compile task  
+    dest: "./build/"                                # destination of compiled html
+    # ---
+    clean: null                                     # If you are compiling twig into html, leave clean as a "null",
+    # ---                                           # nothing gets cleaned since there are no build files.
     data_folderName: "data"                         # name of folder where the data lives, relative to templates
+    # ---
     watch_task:                                            
       enable: true                                  # Should a watch task be created?
       src: "./src/twig/*.twig"                      # If so, what's the source (most likely same as task src)
@@ -128,10 +132,14 @@ tasks:
   # =======   
   nunjucks:
     enable_task: false                               # Turn this task on/off at will!  
+    # ---
     src: "./src/nunjucks/*.html"                    # jade pulls these files when compiling html
     dest: "./src/html"                              # destination of compiled html
-    watch: "./src/nunjucks/*.html"                  # changes to these files will invoke the jade compile task  
+    # ---
+    clean: null                                     # If you are compiling nunjucks into html, leave clean as a "null",
+    # ---                                           # nothing gets cleaned since there are no build files.
     data_folderName: "data"                         # name of folder where the data lives, relative to templates      
+    # ---
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
       src: "./src/nunjucks/*.html"                            # If so, what's the source (most likely same as task src)
@@ -144,8 +152,12 @@ tasks:
   # =======  
   hypertext:
     enable_task: true                                 # Turn this task on/off at will! 
+    # ---
     src: "./src/html/*.html"                          # Path for HTML
     dest: "./build/"                                   # Where should HTML go?
+    #---
+    clean: "./build/*.html"                           # These are deleted & re-generated every time you run "gulp"
+    #---
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
       src: "./src/html/*.html"                        # If so, what's the source (most likely same as task src)
@@ -156,11 +168,17 @@ tasks:
   # =======  
   images:
     enable_task: true                                 # Turn this task on/off at will!  
-    src: "./src/img/**"                               # Path where you will drop images
-    dest: "./build/img"                                # Path for images after minification (on change)
+    # ---
+    src: "./src/img/original/**"                       # Path where you will drop images
+    dest: 
+      src: "./src/img/minified"                               # Path for images after minification (on change)
+      build: "./build/img"
+    #---
+    clean: "./build/img"                           # These are deleted & re-generated every time you run "gulp"
+    #---
     watch_task:                                            
-      enable: false                                    # Should a watch task be created?
-      src: "./src/img/**"                            # If so, what's the source (most likely same as task src)
+      enable: true                                    # Should a watch task be created?
+      src: "./src/img/original/**"                    # If so, what's the source (most likely same as task src)
   # =======   
   #
   # Generate Favicons for any modern web app 
@@ -169,11 +187,15 @@ tasks:
   # =======  
   favicon:
     enable_task: false                                 # Turn this task on/off at will! 
-    src: "./src/favicon/favicon_raw@260x260.png"      # Path(s) for file to produce the favicons. 
-                                                      # Image should be min 260x260!!
-    dest: "./build/favicons"                           # Path for writing the favicons to
+    # ---
+    src: "./src/favicon/favicon_raw@260x260.png"      # Path(s) for file to produce the favicons. Image should be min 260x260!!
+    dest: "./build/img/favicons"                      # Path for writing the favicons to
+    # ---
+    clean: null                                       # favicons are built into img folder, so that task cleans out favicons
+    # ---
     html: "./src/favicon/"                            # Path(s) for HTML file to write or append metadata
-    iconsPath: "../build/favicons"                     # Path for overriding default icons path 
+    iconsPath: "../build/img/favicons"                # Path for overriding default icons path 
+    # ---
     watch_task:                                            
       enable: false                                   # Should a watch task be created?
       src: null                                       # If so, what's the source (most likely same as task src)
@@ -199,14 +221,21 @@ tasks:
   #
   # =======  
   iconFont:
-    enable_task: true                                 # Turn this task on/off at will!  
+    enable_task: false                                 # Turn this task on/off at will!  
+    # ---
     src: "./src/icons/*.svg"                          # Path of the raw icons (as SVG)
-    base: "../src"                                    # Base of the application's asset source relative to where fonts are going                    
+    base: "../src"                                    # Base of the application's asset source relative to where fonts are going      
+    fontDest: "build/fonts/icons"                     # This is where the icon-font gulp pipe spits the webfont files
+    # ---              
+    clean:                                            # These are deleted & re-generated every time you run "gulp"
+      - './build/fonts/icons'
+      - './src/scss/00-base/_icons.scss'
+    # --- 
     sassOutput: "../../src/scss/00-base/_icons.scss"  # Where does the SASS partial go? (relative to fontDest below) 
-    fontPath: "../fonts"                              # Relative path of fonts to processed CSS (eg, this is where @font-face points)
-    fontDest: "build/fonts"                            # This is where the icon-font gulp pipe spits the webfont files
+    fontPath: "../fonts/icons"                        # Relative path of fonts to processed CSS (eg, this is where @font-face points)
     className: "icon"                                 # Basis of the icons' class in CSS
-    template: "gulp/tasks/iconFont/_template.scss"    # This is the basis of the generated SASS partial
+    template: "gulp/util/_iconFont-template.scss"     # This is the basis of the generated SASS partial
+    # ---
     watch_task:                                            
       enable: false                                    # Should a watch task be created?
       src: "./src/icons/*.svg"                            # If so, what's the source (most likely same as task src)
@@ -218,10 +247,15 @@ tasks:
   # =======  
   svgSprite:
     enable_task: false                                # Turn this task on/off at will!  
+    # ---
     src: "sprites"
     dest: "img"
+    # ---
+    clean: null
+    # ---
     extensions: 
       - "svg"
+    # ---
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
       src: "./src/icons/*.svg"                        # If so, what's the source (most likely same as task src)

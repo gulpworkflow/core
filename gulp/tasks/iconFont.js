@@ -14,7 +14,7 @@ var gulp             = require('gulp');
 var iconfont         = require('gulp-iconfont');
 var iconfontCss      = require('gulp-iconfont-css');
 var notify           = require("gulp-notify");
-var handleErrors     = require('../../util/handleErrors');
+var handleErrors     = require('../util/handleErrors');
 // =======   
 // Tasks:
 // ======= 

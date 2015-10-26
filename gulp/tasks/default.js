@@ -4,7 +4,7 @@
 // Config Settings for Module
 // =======  
 var yaml               = require('yamljs');
-var default_task_list  = yaml.load('gulp/config.yml').default_task_list;
+var default_task_list  = yaml.load('gulp/config.yml').default_build_order;
 // =======   
 // Dependencies
 // =======  
@@ -21,7 +21,7 @@ var gulpSequence    = require('gulp-sequence');
 //default_task_list = default_task_list.replace(/"/g, "'");
 //default_task_list = JSON.parse(_default_task_list);
 //default_task_list = default_task_list.escapeSpecialChars();
-thetype = typeof default_task_list;
-console.log(thetype);
-gulp.task('default', gulpSequence('clean:build', ['images', 'iconFont', 'favicon'], ['twig', 'nunjucks', 'jade'],  ['jspm_lib', 'sass'], 'hypertext', 'watch', 'browserSync'));
+//thetype = typeof default_task_list;
+//console.log(thetype);
+gulp.task('default', gulpSequence('clean:build', 'images:move', ['iconFont', 'favicon'], ['twig', 'nunjucks', 'jade'],  ['jspm_lib', 'sass'], 'hypertext', 'watch', 'browserSync'));
 //gulp.task('default', gulpSequence(default_task_list));
