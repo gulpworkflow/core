@@ -1,4 +1,4 @@
-// Minimize Images
+// BrowserSync for static build server and live reload
 // -----------------------------------------------------
 // =======   
 // Config Settings for Module
