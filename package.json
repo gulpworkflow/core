@@ -28,6 +28,7 @@
   "homepage": "https://github.com/ripestudios/gulp-starter#readme",
   "dependencies": {
     "browser-sync": "^2.9.11",
+    "del": "^2.0.2",
     "favicons": "^1.5.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",

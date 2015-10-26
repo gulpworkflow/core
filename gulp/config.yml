@@ -5,7 +5,23 @@
 # =======   
 projectName: "hello-world"                          # For WordPress projects, this will be the theme name
 GAcode: null                                        # Google Analytics code eg -"UA-66481277-1"
-
+# ======= 
+#  
+# Build location:
+# Note: this does not automatically set the destination for sass/templating tasks. We want to maintain
+# flexibility to customize those locations individually throughout this config file. 
+# If you want to change that system-wide do a find + replace in this document for
+# "build" (Default location) and replace it with whatever the new location is.  
+#
+# The files in this location are mostly generated automatically by gulp and will be deleted each time you start
+# the build server.  Explicitly state which files should not be deleted below. 
+#
+# =======
+build:                                    
+  dest: "./build"                                    # Where is your build envirnment stored?
+  dont_clean:                                        # These files will left alone when "cleaning" or deleting the contents of build. 
+    - "./build/js/config.js"                         # JSPM config needs to be in version control & build folder
+    - "./build/js/jspm_modules"                      # No need to reinstall jspm modules every time you run the build server
 # ======= 
 # Default task list:
 # When you run the default task, the following tasks are executed (in order) before we begin watching
@@ -16,7 +32,7 @@ GAcode: null                                        # Google Analytics code eg -
 #  2. run 'c' after 'a' and 'b'
 # 
 default_task_list: 
-  - 'clean'
+  - 'clean:build'
   - ['images', 'iconFont', 'favicon']
   - ['twig', 'nunjucks', 'jade']
   - ['jspm_lib', 'sass']
