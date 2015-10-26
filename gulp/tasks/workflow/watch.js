@@ -1,5 +1,9 @@
-// Default task
+// Generate watch tasks for all enabled watchable tasks
 // -----------------------------------------------------
+// all tasks in the config.yml have a flag for enable_watch.enable
+// if that's true and the task itself is enabled, then a watch task
+// is generated below. 
+//
 // =======   
 // Config Settings for Module
 // =======  
