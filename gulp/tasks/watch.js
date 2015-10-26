@@ -37,7 +37,7 @@ gulp.task('watch', function() {
 		task = config[task_name]; 
 		// check if the task should have a watch task
 		if(task['watch_task']['enable'] === true) {
-		    //console.log(task_name);
+		    console.log(task_name);
 			src = task['watch_task']['src']; // set which files we watch for changes
 		   // gulp.watch(src, [task_name]);
 		   console.log(src);
