@@ -15,38 +15,37 @@ var config          = yaml.load('gulp/config.yml').tasks;
 var gulp            = require('gulp');
 var watch           = require('gulp-watch')
 var getEnabledTasks = require('../util/getEnabledTasks')
+
+// =======   
+// Task Functionality: 
+// We abstract our tasks to a named function so we can require the meeat & bones elsewhere if necessary
+// ======= 
+var watchTask = function() {
+  var task_list = getEnabledTasks();
+  var watchableTasks = [];
+  for (var i = task_list.length - 1; i >= 0; i--) {
+  	task_name = task_list[i];
+	task = config[task_name]; 
+  	if(task['watch_task']['enable'] === true) {
+  		watchableTasks = watchableTasks.concat(task_name);
+  	}
+  }
+// console.log(watchableTasks);
+  watchableTasks.forEach(function(taskName) {
+  	//console.log(taskName);
+    var task = config[taskName];
+    if(task) {
+        var glob = task['watch_task']['src'];
+        //console.log(task['watch_task']['src']);
+        watch(glob, function() {
+          console.log(taskName + " watch event");
+          require('./' + taskName)()
+        })
+     }
+  })
+}
 // =======   
 // Task
 // =======  
-// First check each task and create a dynamic object of enabled tasks
-// Each task has a boolean "enable_task" setting in the config.yml file 
-// These tasks will be run initially before the watch tasks kick in
-
-
-/*gulp.task('watch', function() {
-	// Loop through all the enabled tasks and create a watch task (if that is enabled)
-	
-	//console.log('done!');
-});*/
-gulp.task('watch', function() {
-	task_list = getEnabledTasks();
-	console.log(task_list);
-	// Loop through all the enabled tasks and create a watch task (if that is enabled)
-	for (var i = task_list.length - 1; i >= 0; i--) {
-		task_name = task_list[i];
-		task = config[task_name]; 
-		// check if the task should have a watch task
-		if(task['watch_task']['enable'] === true) {
-		    console.log(task_name);
-			src = task['watch_task']['src']; // set which files we watch for changes
-		   // gulp.watch(src, [task_name]);
-		   console.log(src);
-		   watch(src, function() {
-		   	console.log('sdf');
-		   	 require('./' + task_name)();
-	       //require('./' + taskName)()
-	      });
-		}
-	};	
-	//console.log('done!');
-});
+gulp.task('watch', /*['browserSync'],*/ watchTask)
+module.exports = watchTask

@@ -20,10 +20,11 @@ var cssbeautify  = require('gulp-cssbeautify');
 var notify       = require('gulp-notify');
 var through      = require('gulp-through');
 // =======   
-// Tasks:
+// Task Functionality: 
+// We abstract our tasks to a named function so we can require the meeat & bones elsewhere if necessary
 // ======= 
-gulp.task('sass', function () {
-   if(config.enable_task) {   
+var processSass = function() {
+  if(config.enable_task) {   
       return gulp.src(config.src)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(bulkSass()) // allows for eg - '@import modules/**/*' 
@@ -34,8 +35,16 @@ gulp.task('sass', function () {
         .pipe(autoprefixer({ browsers: config.autoprefix_browsers }))
         .pipe(sourcemaps.write('./')) // write sourcemaps to external file
         .pipe(gulp.dest(config.dest))
-        .pipe(browserSync.reload({stream:true}));
+        .pipe(browserSync.reload({stream:true}))
+        .pipe( notify({
+          message: "Generated file: <%= file.relative %>"
+        }));
     } else {
         console.log('sass processing disabled via config.yml');
     }
-});
+}
+// =======   
+// Tasks:
+// ======= 
+gulp.task('sass', processSass);
+module.exports = processSass;

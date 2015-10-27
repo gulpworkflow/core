@@ -21,14 +21,14 @@ var notify       = require("gulp-notify");
 // ======= 
 var handleErrors = require('../util/handleErrors');
 var getTemplateData = require('../util/getTemplateData');
-
 // =======   
-// Tasks:
+// Task Functionality: 
+// We abstract our tasks to a named function so we can require the meeat & bones elsewhere if necessary
 // ======= 
-gulp.task('nunjucks', function() {
+var compileNunjucks = function() {
   if(config.enable_task) {
-    	gulp.src(config.src)
-    	.pipe(data(function(file) {
+      gulp.src(config.src)
+      .pipe(data(function(file) {
         return getTemplateData(file,config.data_folderName);
       }))
       .pipe(nunjucks())
@@ -36,6 +36,10 @@ gulp.task('nunjucks', function() {
       .pipe(gulp.dest(config.dest))
       .pipe(browserSync.reload({
         stream: true
+      }))
+      .pipe( notify({
+        title: "Nunjucks Success",
+          message: "<%= file.relative %> compiled"
       }));
   } else {
     gulp.src(config.src)
@@ -45,5 +49,10 @@ gulp.task('nunjucks', function() {
         sound: true // Only Notification Center or Windows Toasters
       }));
   }
-});
+}
+// =======   
+// Tasks:
+// ======= 
+gulp.task('nunjucks', compileNunjucks);
+module.exports = compileNunjucks;
 

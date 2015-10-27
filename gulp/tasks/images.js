@@ -14,6 +14,7 @@ var imagemin     = require('gulp-imagemin');
 var browserSync  = require('browser-sync');
 var minimist     = require('minimist');
 var watch_stream = require('gulp-watch');
+var notify       = require('gulp-notify');
 // =======   
 // Util:
 // ======= 
@@ -30,14 +31,13 @@ var knownOptions = {
 var options = minimist(process.argv.slice(2), knownOptions);
 
 // =======   
-// Tasks:
+// Task Functionality: 
+// We abstract our tasks to functions so we can require the meeat & bones elsewhere if necessary
 // ======= 
-
 /* if the task is enabled, let's minify each new image and put it both:
    (a) in the "minified" source folder (so we commit to version control & can compare with original source)
    (b) in the build folder so our webserver can access it 
 */
-
 var imagesMinify = function() {
   if(config.enable_task) {  
     console.log(options.src)
@@ -46,14 +46,24 @@ var imagesMinify = function() {
       .pipe(imagemin()) // Optimize
       .pipe(gulp.dest(config.dest.src))
       .pipe(gulp.dest(config.dest.build))
-      .pipe(browserSync.reload({stream:true}));
+      .pipe(browserSync.reload({stream:true}))
+      .pipe(notify({
+          message: "Minified Image: <%= file.relative %>"
+       }));
   } else {
     console.log('image min disabled via config.yml');
   }
 }
 
+// =======   
+// Tasks:
+// Create actual gulp task by name
+// ======= 
 gulp.task('images', imagesMinify);
 module.exports = imagesMinify;
+
+
+
 /* We don't want to continually re-minify our images each time gulp runs (which will slow everything way down).
    So, images are only minified on a transactional basis – one at a time, when they are added for first time (task 'images')
    The minified images are still stored in the 'source' folder (so we commit to version control & can compare with original source). 
@@ -69,10 +79,4 @@ gulp.task('images:move', function() {
   // just move the images, nothing else! (they're already minified)
   return gulp.src(minified_source_images)
     .pipe(gulp.dest(config.dest.build));
-
-    watch(minified_source_images, function () {
-        gulp.src(minified_source_images)
-            .pipe(watch('css/**/*.css'))
-            .on('end', cb);
-    })
 });

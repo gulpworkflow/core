@@ -17,7 +17,7 @@ GAcode: null                                        # Google Analytics code eg -
 # 
 default_build_order: 
   - 'clean:build'
-  - ['images:move', 'iconFont', 'favicon']
+  - ['images:move', 'iconFont', 'favicon:move']
   - ['twig', 'nunjucks', 'jade']
   - ['jspm_lib', 'sass']
   - 'hypertext'
@@ -82,7 +82,9 @@ tasks:
     # ---
     watch_task:                                            
       enable: true                                    # Should a watch task be created?
-      src: "./src/scss/*.scss"                        # If so, what's the source (most likely same as task src)
+      src: 
+        - "./src/scss/*.scss"                        # If so, what's the source (most likely same as task src)
+        - "./src/scss/**/*.scss"
   # =======   
   # =======   
   #
@@ -186,12 +188,13 @@ tasks:
   #
   # =======  
   favicon:
-    enable_task: false                                 # Turn this task on/off at will! 
+    enable_task: true                                 # Turn this task on/off at will! 
     # ---
     src: "./src/favicon/favicon_raw@260x260.png"      # Path(s) for file to produce the favicons. Image should be min 260x260!!
-    dest: "./build/img/favicons"                      # Path for writing the favicons to
+    dest: "./build/favicon/output"                      # Path for writing the favicons to
     # ---
-    clean: null                                       # favicons are built into img folder, so that task cleans out favicons
+    clean: 
+      -                                        # favicons are built into img folder, so that task cleans out favicons
     # ---
     html: "./src/favicon/"                            # Path(s) for HTML file to write or append metadata
     iconsPath: "../build/img/favicons"                # Path for overriding default icons path 
@@ -206,7 +209,7 @@ tasks:
   #
   # =======  
   fonts:
-    enable_task: false                                 # Turn this task on/off at will!  
+    enable_task: false                                # Turn this task on/off at will!  
     src: "fonts"
     dest: "fonts"
     extensions: 
@@ -221,23 +224,24 @@ tasks:
   #
   # =======  
   iconFont:
-    enable_task: false                                 # Turn this task on/off at will!  
+    enable_task: true                                # Turn this task on/off at will!  
     # ---
     src: "./src/icons/*.svg"                          # Path of the raw icons (as SVG)
-    base: "../src"                                    # Base of the application's asset source relative to where fonts are going      
+    base: "./src"                                     # Set the base of "icons" folder. Without it, the template goes to weird places (cant leave src) 
+                                                        # 
     fontDest: "build/fonts/icons"                     # This is where the icon-font gulp pipe spits the webfont files
     # ---              
     clean:                                            # These are deleted & re-generated every time you run "gulp"
       - './build/fonts/icons'
       - './src/scss/00-base/_icons.scss'
     # --- 
-    sassOutput: "../../src/scss/00-base/_icons.scss"  # Where does the SASS partial go? (relative to fontDest below) 
-    fontPath: "../fonts/icons"                        # Relative path of fonts to processed CSS (eg, this is where @font-face points)
-    className: "icon"                                 # Basis of the icons' class in CSS
-    template: "gulp/util/_iconFont-template.scss"     # This is the basis of the generated SASS partial
+    sassOutput: "../../../src/scss/00-base/_icons.scss"  # The path where the (S)CSS file should be saved, relative to the font destination (fontDest) 
+    fontPath: "../fonts/icons"                           # Path of fonts, relative to CSS (not scss) (eg, this is where @font-face points)
+    className: "icon"                                    # Basis of the icons' class in CSS
+    template: "gulp/util/_iconFont-template.scss"     # The template path for generating the stylesheet (we use scss)
     # ---
     watch_task:                                            
-      enable: false                                    # Should a watch task be created?
+      enable: true                                    # Should a watch task be created?
       src: "./src/icons/*.svg"                            # If so, what's the source (most likely same as task src)
   # =======   
   #

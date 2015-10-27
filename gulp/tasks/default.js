@@ -22,6 +22,13 @@ var gulpSequence    = require('gulp-sequence');
 //default_task_list = JSON.parse(_default_task_list);
 //default_task_list = default_task_list.escapeSpecialChars();
 //thetype = typeof default_task_list;
-//console.log(thetype);
-gulp.task('default', gulpSequence('clean:build', 'images:move', ['iconFont', 'favicon'], ['twig', 'nunjucks', 'jade'],  ['jspm_lib', 'sass'], 'hypertext', 'watch', 'browserSync'));
+
+//gulp.task('default', gulpSequence('clean:build', 'images:move', ['iconFont', 'favicon'], ['twig', 'nunjucks', 'jade'],  ['jspm_lib', 'sass'], 'hypertext', 'watch', 'browserSync'));
 //gulp.task('default', gulpSequence(default_task_list));
+
+var defaultTask = function() {
+  console.log(default_task_list[0]);
+}
+
+gulp.task('default', defaultTask);
+module.exports = defaultTask;

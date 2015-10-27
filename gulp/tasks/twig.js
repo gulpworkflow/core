@@ -13,6 +13,7 @@ var gulp         = require('gulp');
 var twig         = require('gulp-twig');
 var data         = require('gulp-data'); 
 var browserSync  = require('browser-sync');
+var notify       = require('gulp-notify');
 /*  var marked       = require('marked'); // For filter
     to-do: add markdown support */
 var notify       = require("gulp-notify");    
@@ -21,15 +22,15 @@ var notify       = require("gulp-notify");
 // ======= 
 var handleErrors = require('../util/handleErrors');
 var getTemplateData = require('../util/getTemplateData');
-
 // =======   
-// Tasks:
+// Task Functionality: 
+// We abstract our tasks to a named function so we can require the meeat & bones elsewhere if necessary
 // ======= 
-gulp.task('twig', function() {
+var compileTwig = function() {
   //console.log(config);
   if(config.enable_task) {
     gulp.src(config.src)
-    	.pipe(data(function(file) {
+      .pipe(data(function(file) {
         return getTemplateData(file,config.data_folderName);
       }))
       .pipe(twig())
@@ -37,7 +38,11 @@ gulp.task('twig', function() {
       .pipe(gulp.dest(config.dest))
       .pipe(browserSync.reload({
         stream: true
-      }));
+      }))
+      .pipe( notify({
+        title: "Twig Success",
+          message: "<%= file.relative %> compiled"
+        }));
   } else {
     gulp.src(config.src)
       .pipe(notify({
@@ -46,5 +51,10 @@ gulp.task('twig', function() {
         sound: true // Only Notification Center or Windows Toasters
       }));
   }
-});
+}
+// =======   
+// Tasks:
+// ======= 
+gulp.task('twig', compileTwig);
+module.exports = compileTwig;
 

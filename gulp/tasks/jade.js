@@ -21,14 +21,14 @@ var notify       = require("gulp-notify");
 // ======= 
 var handleErrors = require('../util/handleErrors');
 var getTemplateData = require('../util/getTemplateData');
-
 // =======   
-// Tasks:
+// Task Functionality: 
+// We abstract our tasks to a named function so we can require the meeat & bones elsewhere if necessary
 // ======= 
-gulp.task('jade', function() {
-  if(config.enable_task) {
-    	gulp.src(config.src)
-    	.pipe(data(function(file) {
+var compileJade = function() {
+   if(config.enable_task) {
+      gulp.src(config.src)
+      .pipe(data(function(file) {
         return getTemplateData(file,config.data_folderName);
       }))
       .pipe(jade({
@@ -38,6 +38,10 @@ gulp.task('jade', function() {
       .pipe(gulp.dest(config.dest))
       .pipe(browserSync.reload({
         stream: true
+      }))
+      .pipe( notify({
+        title: "Jade Success",
+          message: "<%= file.relative %> compiled"
       }));
   } else {
     gulp.src(config.src)
@@ -47,5 +51,10 @@ gulp.task('jade', function() {
         sound: true // Only Notification Center or Windows Toasters
       }));
   }
-});
+}
+// =======   
+// Tasks:
+// ======= 
+gulp.task('jade', compileJade);
+module.exports = compileJade;
 
