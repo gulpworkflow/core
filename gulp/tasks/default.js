@@ -1,5 +1,6 @@
 // Default task
 // -----------------------------------------------------
+'use strict';
 // =======   
 // Config Settings for Module
 // =======  
@@ -9,25 +10,12 @@ var default_task_list  = yaml.load('gulp/config.yml').default_build_order;
 // Dependencies
 // =======  
 var gulp            = require('gulp');
-var gulpSequence    = require('gulp-sequence');
-//var getEnabledTasks = require('../../util/getEnabledTasks')
-
-
-// First check each task and create a dynamic object of enabled tasks
-// Each task has a boolean "enable_task" setting in the config.yml file 
-// These tasks will be run initially before the watch tasks kick in
-//task_list = getEnabledTasks();
-//default_task_list = JSON.stringify(default_task_list).substr(1,JSON.stringify(default_task_list).length-2);
-//default_task_list = default_task_list.replace(/"/g, "'");
-//default_task_list = JSON.parse(_default_task_list);
-//default_task_list = default_task_list.escapeSpecialChars();
-//thetype = typeof default_task_list;
-
-//gulp.task('default', gulpSequence('clean:build', 'images:move', ['iconFont', 'favicon'], ['twig', 'nunjucks', 'jade'],  ['jspm_lib', 'sass'], 'hypertext', 'watch', 'browserSync'));
-//gulp.task('default', gulpSequence(default_task_list));
+var runSequence     = require('run-sequence');
 
 var defaultTask = function() {
-  console.log(default_task_list[0]);
+  // apply the default tasks as the arguement for run-sequence
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+  runSequence.apply(null, default_task_list);
 }
 
 gulp.task('default', defaultTask);

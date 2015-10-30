@@ -14,7 +14,7 @@ var config          = yaml.load('gulp/config.yml').tasks;
 // =======  
 var gulp            = require('gulp');
 var watch           = require('gulp-watch')
-var getEnabledTasks = require('../util/getEnabledTasks')
+var getEnabledTasks = require('../../util/getEnabledTasks')
 
 // =======   
 // Task Functionality: 
@@ -39,7 +39,7 @@ var watchTask = function() {
         //console.log(task['watch_task']['src']);
         watch(glob, function() {
           console.log(taskName + " watch event");
-          require('./' + taskName)()
+          require('../' + taskName)()
         })
      }
   })

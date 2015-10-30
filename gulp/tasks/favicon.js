@@ -14,6 +14,7 @@ var gulp       = require('gulp');
 var through    = require('through2');
 var favicons   = require('gulp-favicons');
 var notify     = require("gulp-notify");
+var del        = require('del')
 // =======   
 // Task Functionality: 
 // We abstract our tasks to a named function so we can require the meeat & bones elsewhere if necessary
@@ -57,3 +58,13 @@ var generateFavicon = function() {
 // =======
 gulp.task('favicon', generateFavicon);
 module.exports = generateFavicon;
+
+gulp.task('favicon:move', function(){
+  console.log('move favicons');
+});
+
+gulp.task('clean:favicon', function(){
+  del(config.dest).then(function(){
+    console.log('favicons deleted from ' + config.dest);
+  });
+});

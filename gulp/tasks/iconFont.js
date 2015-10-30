@@ -15,7 +15,6 @@ var iconfont         = require('gulp-iconfont');
 var iconfontCss      = require('gulp-iconfont-css');
 var notify           = require("gulp-notify");
 var handleErrors     = require('../util/handleErrors');
-
 // =======   
 // Task Functionality: 
 // We abstract our tasks to functions so we can require the meeat & bones elsewhere if necessary
