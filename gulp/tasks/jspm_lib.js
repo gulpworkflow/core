@@ -45,7 +45,7 @@ var bundleJSPM = function() {
       .pipe(changed('build/js/'))
       .pipe(gulp.dest('build/js/'));
 
-    return jspm.bundle('lib/main',  'build/js/build.js',
+    return jspm.bundleSFX('lib/main',  'build/js/build.js',
       {
         sourceMaps: true,
         // sourceMapContents: true,
