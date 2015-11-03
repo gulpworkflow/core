@@ -1,11 +1,8 @@
 # Gulp Build Workflow
-*This is a workflow for delivering coded UI with traditional (html/vanilla js/css) or modern tools (scss/es6/jade/twig/nunjucks).* 
-  
-*It supports production-ready delivery (favicon generator, image minification, asset revisioning).*
+_This is a workflow for **delivering coded UI** with traditional (html/vanilla js/css) or modern tools (scss/es6/jade/twig/nunjucks). It supports **production-ready delivery** (favicon generator, icon fonts, image minification, asset revisioning)._  
 
-*With this resource, you can deliver a static site, prototype interfaces with real code/data, or build out assets & templates as themes for another system (such as WordPress)*
+_With this resource, you can deliver a static site, prototype interfaces with real code/data, or build out assets & templates as themes for another system (such as WordPress)_
 
-***
 
 ##### [1) Install workflow]()
 ##### [2) Organize source code]()
