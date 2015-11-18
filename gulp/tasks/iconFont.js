@@ -4,7 +4,7 @@
 // Config Settings for Module
 // =======  
 var yaml             = require('yamljs');
-var global_config    = yaml.load('gulp/config.yml');
+var global_config    = yaml.load('src/config.yml');
 var config           = global_config.tasks.iconFont;
 config.name          = global_config.projectName;
 // =======   

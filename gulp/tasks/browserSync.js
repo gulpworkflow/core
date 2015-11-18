@@ -4,7 +4,7 @@
 // Config Settings for Module
 // =======  
 var yaml             = require('yamljs');
-var global_config    = yaml.load('gulp/config.yml');
+var global_config    = yaml.load('src/config.yml');
 var config           = global_config.tasks.browserSync;
     config.name      = global_config.projectName;
 // =======   
@@ -17,14 +17,7 @@ var browserSync  = require('browser-sync');
 // ======= 
 gulp.task('browserSync', function() {
   if(config.enable_task) {	
-	  browserSync.init(null, {
-	    server: {
-	      baseDir: config.server.baseDir,
-	      index: config.server.index
-	    },
-	    open: "external",
-	    logPrefix: config.name
-	  });
+	  browserSync.init(null, config.options);
   } else {
   	console.log('browserSync disabled via config.yml');
   }

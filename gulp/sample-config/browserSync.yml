@@ -1,0 +1,22 @@
+# ==========================================================================================================================
+#
+# BrowserSync
+# -----------
+# Build your project efficiently! You can live-reload as you make changes, and view your project across devices synchronously!
+# http://www.browsersync.io/
+browserSync:
+  enable_task: true                                 # Turn this task on/off at will!
+  # ---
+  # http://www.browsersync.io/docs/options/
+  options:
+   proxy: "globaldocs.dev"
+   notify: false
+   open: "external"
+   logPrefix: "global-docs"
+ # server: # This is for static
+ #   baseDir: "build"                                # Base directory of web files you wanted to serve in browser
+ #   index: "globaldocs.dev"                              # What is the index file?
+  # ---
+  watch_task:
+    enable: false                                   # Should a watch task be created?
+    src: null

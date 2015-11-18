@@ -8,7 +8,7 @@
 // Config Settings for Module
 // =======  
 var yaml            = require('yamljs');
-var config          = yaml.load('gulp/config.yml').tasks;
+var config          = yaml.load('src/config.yml').tasks;
 // =======   
 // Dependencies
 // =======  
@@ -43,6 +43,7 @@ var watchTask = function() {
         })
      }
   })
+  require('../watchFiles').watch();
 }
 // =======   
 // Task

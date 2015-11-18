@@ -4,7 +4,7 @@
 // Config Settings for Module
 // =======  
 var yaml         = require('yamljs');
-var config       = yaml.load('gulp/config.yml').tasks.sass;
+var config       = yaml.load('src/config.yml').tasks.sass;
 // =======   
 // Dependencies
 // =======  

@@ -5,7 +5,7 @@
 // Config Settings for Module
 // =======  
 var yaml            = require('yamljs');
-var config          = yaml.load('gulp/config.yml').production;
+var config          = yaml.load('src/config.yml').production;
 // =======   
 // Dependencies
 // =======

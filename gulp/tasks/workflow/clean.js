@@ -4,7 +4,7 @@
 // Config Settings for Module
 // =======  
 var yaml            = require('yamljs');
-var config          = yaml.load('gulp/config.yml').tasks;
+var config          = yaml.load('src/config.yml').tasks;
 // =======   
 // Dependencies
 // =======  
@@ -24,6 +24,8 @@ var getEnabledTasks = require('../../util/getEnabledTasks')
 var cleanBuildFolder = function() {
    task_list = getEnabledTasks();
    var cleanFiles = [];	
+
+   // loop through all tasks and create an object of files to delete
    for (var i = task_list.length - 1; i >= 0; i--) {
 		task_name = task_list[i];
 		task = config[task_name]; 
@@ -34,22 +36,22 @@ var cleanBuildFolder = function() {
 		  cleanFiles = cleanFiles.concat(src);
 		}
 	};
-	//console.log(cleanFiles);	
+  // clean out task built files
   del(cleanFiles).then(function(paths) {
   	if(paths != '') {
 	  console.log('Cleaned out the following files: ' + paths);
-    } else {
-      console.log('Nothing to clean');
     }
   });
+  // clean out "watch files"
+  require('../watchfiles').clean()
+
 }
 // =======   
 // Tasks
 // =======
-gulp.task('clean:build', cleanBuildFolder);
+gulp.task('clean', cleanBuildFolder);
 // Clean out the "dist" folder - we do this before packaging up our project
 // for distribution on a production environment
-gulp.task('clean:dist', function () {
-});
+
 
 module.exports = cleanBuildFolder;

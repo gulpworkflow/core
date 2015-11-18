@@ -6,8 +6,8 @@
 // Config Settings for Module
 // =======
 var yaml         = require('yamljs');
-var config       = yaml.load('gulp/config.yml').tasks.jspm_lib; 
-var bundle       = yaml.load('gulp/config.yml').tasks.jspm_bundle; 
+var config       = yaml.load('src/config.yml').tasks.jspm_lib;
+var bundle       = yaml.load('src/config.yml').tasks.jspm_bundle;
 // =======   
 // Dependencies
 // =======

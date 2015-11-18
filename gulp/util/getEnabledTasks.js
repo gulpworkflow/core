@@ -1,5 +1,5 @@
 var yaml      = require('yamljs');
-var config    = yaml.load('gulp/config.yml');
+var config    = yaml.load('src/config.yml');
 
 module.exports = function() {
   // loop through each config object and push it to our array if "enable_task" is true

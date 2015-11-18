@@ -5,7 +5,7 @@
 // Config Settings for Module
 // =======  
 var yaml               = require('yamljs');
-var default_task_list  = yaml.load('gulp/config.yml').default_build_order;
+var default_task_list  = yaml.load('src/config.yml').default_build_order;
 // =======   
 // Dependencies
 // =======  
