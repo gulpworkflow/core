@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "gulp-iconfont-css": "^2.0.0",
+    "gulp-if": "^2.0.0",
     "gulp-nunjucks-html": "^2.0.0",
     "gulp-through": "^0.3.0",
     "jspm": "^0.16.13",
