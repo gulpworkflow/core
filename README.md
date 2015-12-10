@@ -1,8 +1,13 @@
 <img src="https://avatars3.githubusercontent.com/u/15914827?v=3&s=200" width="100" height="100">
 
 # Gulp Workflow
-_Gulp Workflow is a toolset for designers & developers to deliver their projects at blazing speeds.  This workflow is a centralized set of gulp tasks, helper functions, and configurations that allow you to work more consistently & quickly.  The workflow itself is highly configurable & un-opionated and, therefore compatible with virtually any web-based system!  To help you get started, we have a series of starters for WordPress, static sites, Jeykll, and Email templates._
+_Gulp Workflow is a toolset for designers & developers to deliver their projects at blazing speeds.  This workflow is a centralized set of gulp tasks, helper functions, and configurations that allow you to work more consistently & quickly.  The workflow itself is highly configurable & un-opionated and, therefore compatible with virtually any web-based system!  To help you get started, we have a series of starters for WordPress, static sites, Jeykll, and Email templates._  
+  
+* [What does it do?]()  
+* [How to install]()  
+* [Create your own starter]()  
 
+## What does it do?
 _Gulp Workflow is designed to help you the following things:_
   
 ### 1) Organize your source code
