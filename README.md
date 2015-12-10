@@ -21,6 +21,6 @@ Let our build system handle the dirty work so you can focus on creative solution
 
 ### 3) Optimize + bundle your project for deployment
 When you're ready to deploy, Gulp Workflow will bundle your project together into a nice and clean folder for deployment.  Features:
-* JS + CSS optimized and uglified
-* Asset revisioning a la the Rails Asset Pipeline.  All filenames are revisioned with an md5 hash, a rev-manifest.json file is generarted and all asset references are updated in html, css, and js
-* File size reporting
+* **Minification** – JS + CSS optimized and uglified
+* **Asset revisioning** – All filenames are revisioned with an md5 hash, a rev-manifest.json file is generarted and all asset references are updated in html, css, and js.  This is crucial to help bust caches and quickly determine if server files are up-to-date.  Similar to the Rails Asset Pipeline
+* **File size reporting** – Know the performance toll and bandwidth cost of your project right from the command line
