@@ -16,7 +16,7 @@ You are free to organize your code in the way that is most intuitive to you & yo
 [See an example](https://raw.githubusercontent.com/gulpworkflow/wiki-images/master/core-src-demo.png)  
 
 ### 2) Automate the build process
-Let our build system handle the dirty work so you can focus on creative solutions!  Gulp Workflow can do the following things:
+Let our build system handle the dirty work so you can focus on creative solutions!  Gulp Workflow can handle the following things:
 * **[Browser Sync]()** – Never reload your browser during development again! (via BrowserSync)
 * **[HTML]()** – Use static HTML or compile templates (jade, twig, nunjucks), use real data if you'd like! 
 * **[Emails]()** – Inline your CSS/Send test emails/Litmus integration
