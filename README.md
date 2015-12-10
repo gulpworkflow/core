@@ -11,7 +11,9 @@ _Gulp Workflow is a toolset for designers & developers to deliver their projects
 _Gulp Workflow is designed to help you the following things:_
   
 ### 1) Organize your source code
-You are free to organize your code in the way that is most intuitive to you & your team as the authors.  Let the task runners build your project the way WordPress, Jeykll, Apache, etc require.  Cast away your shackles! 
+You are free to organize your code in the way that is most intuitive to you & your team as the authors.  Let the task runners build your project the way WordPress, Jeykll, Apache, etc require.  Cast away your shackles!  
+[See an example](https://raw.githubusercontent.com/gulpworkflow/wiki-images/master/core-src-demo.png)  
+
 ### 2) Automate the build process
 Let our build system handle the dirty work so you can focus on creative solutions!  Gulp Workflow can do the following things:
 * **[Browser Sync]()** – Never reload your browser during development again! (via BrowserSync)
