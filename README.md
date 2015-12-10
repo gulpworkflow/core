@@ -15,7 +15,7 @@ Let our build system handle the dirty work so you can focus on creative solution
 * **Favicons** – Generate Favicons and associated markup
 * **Fonts** – Queue your fonts for web use
 * **Icon Font** – Generate iconfont from a folder of SVGs
-* **Images** – Minify your images
+* **Images** – Minify/compress your images
 * **Javascript Modules** – ES6 supported w/ Babel, sourcemaps, lint
 * **SASS/SCSS** – Compile CSS, auto-prefix, lint, sourcemaps
 * **Sprites** – Generate a Sprite from a set of images
