@@ -16,8 +16,8 @@ Let our build system handle the dirty work so you can focus on creative solution
 * **Fonts** – Queue your fonts for web use
 * **Icon Font** – Generate iconfont from a folder of SVGs
 * **Images** – Minify your images
-* **Javascript Modules** – ES6 supported w/ Babel
-* **SASS/SCSS** – Compile your SASS
+* **Javascript Modules** – ES6 supported w/ Babel, sourcemaps, lint
+* **SASS/SCSS** – Compile CSS, auto-prefix, lint, sourcemaps
 * **Sprites** – Generate a Sprite from a set of images
 * **Watch** – Listen for changes to any arbitrary set of files and move them to the right place.  This helps you store your source however you'd like (ie php, meta info, theme files, content, etc)
 
