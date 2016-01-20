@@ -1,0 +1,110 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <!--  Landing Screen -->
+  <div class="landingScreen">
+    <div class="Globe-textOverlay">
+      <h1 class="title">{{landingScreen.title}}</h1>
+      <p class="subtitle">{{landingScreen.subhead}}</p>
+      <a class="btn" href="#services"{# <-- Change database value to this {{landingScreen.buttonURL}} #} data-scroll>{{landingScreen.buttonText}}</a>
+    </div>
+    <div class="Globe" id="GlobeCanvas"></div>
+  </div><!-- /content-wrapper -->
+  <div class="contentBlock alternate">
+    <div class="container">
+      <h2>{{secondaryHeader.title}}</h2>
+      <p class="p-t-md">{{secondaryHeader.text}}</p>
+    </div>
+  </div>
+  <!-- Services -->
+  <div class="contentBlock alternate" id="services">
+    <div class="sectionLabel">{{sectionLabels.services}}</div>
+    <section class="Service-parentWrapper">
+      {% for service in services %}
+      <article class="Service">
+        {% if service.icon %}<img class="Service-icon" src="{{service.icon}}" />{% endif %}
+        <h1>{{service.name}}</h1>
+        <div class="Service-description">
+          {{service.description}}
+        </div>
+        {% if service.hasDocumentTypes %}
+        <div class="Service-documentTypeWrapper">
+          {% for documentType in service.documentTypes %}
+          <a class="Service-documentType js-overlay-link" data-overlay="{{documentType.slug}}" href="{{documentType.permalink}}"> {# {{documentType.permalink}} #}
+              <img class="Service-icon" src="{{documentType.icon}}" />
+              <h2>{{documentType.title}}</h2>
+              {{documentType.description}}
+              <span>Learn More</span>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if service.name == "Apostille Authentication" %}
+          {% include 'modules/ApostilleCountries.twig' %}
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+  </div>
+  <!-- About -->
+  <div class="contentBlock alternate" id="about">
+    <div class="sectionLabel">{{sectionLabels.about}}</div>
+    <div class="container twoColText">
+    {{aboutContent}}
+    </div>
+  </div>
+  <!-- FAQ -->
+  <div class="contentBlock alternate" id="faq">
+    <div class="sectionLabel">{{sectionLabels.faq}}</div>
+    <div class="container">
+      <ul class="Accordion">
+      {% for question in faq.questions %}
+        <li class="Accordion-qWrapper">
+          <input class="Accordion-checkBox" type="checkbox" checked>
+          <!--<i class="Accordion-icon"></i>-->
+          <h2 class="Accordion-question">{{question.question}}</h2>
+          <div class="Accordion-answer">
+            <div class="Accordion-answerTextWrapper">
+              {{question.answer}}
+            </div>
+          </div>
+          <div class="Accordion-halfCircle"><span><span></div>
+        </li>
+      {% endfor %}
+      </ul>
+      <a class="btn secondary dark" href="{{faq.buttonURL}}">{{faq.buttonLabel}}</a>
+    </div>
+  </div>
+  <!-- Team -->
+  <div class="contentBlock alternate" id="team">
+    <div class="sectionLabel">{{sectionLabels.team}}</div>
+    <div class="container">
+      <img src="{{team.imageSrc}}" />
+      <br><br>
+      {{team.content}}
+    </div>
+  </div>
+  <!-- Updates (via Twitter) -->
+  <div class="contentBlock alternate" id="updates">
+    <div class="container no-gutter">
+      <div class="sectionLabel">Updates</div>
+      <div class="Update-parentWrapper">
+      <!--a Tweet-->
+        {% for tweet in tweets %}
+        <div class="Update">
+          <div class="Update-wrapper">
+            <div class="Update-date">{{tweet.created_at|date("m/d/Y")}}</div>
+            <div class="Update-tweet">{{tweet.text|twitterify}}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <a class="btn secondary dark" href="http://twitter.com/TweetGlobalDocs" target="_blank">More Updates</a>
+    </div>
+  </div>
+  <!-- Get Started -->
+  {% block getStarted %}
+  {% include 'modules/GetStarted.twig' with {'classes': 'dark'} %}
+  {% endblock %}
+
+{% endblock %}

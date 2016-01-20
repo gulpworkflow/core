@@ -1,0 +1,23 @@
+// ===================================================================================
+// Grid
+// -------------
+$grid-breakpoints: (
+  xs: 0,    // Extra small screen / phone
+  sm: 34em, // Small screen / phone
+  md: 48em, // Medium screen / tablet
+  lg: 62em, // Large screen / desktop
+  xl: 75em  // Extra large screen / wide desktop
+);
+// Number of columns in the grid.
+$grid-columns:               24;
+// Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:          1.5rem;
+// Use flexbox grid?
+$enable-flex:                false;
+// Generate classes for all grid settings
+// Disable if you use semantic approach, it reduces the filesize
+$enable-grid-classes:        false;
+
+$max-width:                  940px;
+$max-width-narrow:           $max-width;
+$max-width-narrowest:        620px;

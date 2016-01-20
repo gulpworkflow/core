@@ -11,6 +11,7 @@
 */
 
 var requireDir        = require('require-dir');
-
+//require('./gulp/workflow/build');
 // Require all tasks in gulp/tasks, including subfolders
+//requireDir('./gulp/workflow', { recurse: true });
 requireDir('./gulp/tasks', { recurse: true });

@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="contentBlock light-gray">
+  <img class="DocumentDetails-icon" src="{{post.get_field('documentType_icon')}}">
+	<h1 class="DocumentDetails-title">{{post.title}}</h1>
+  <p class="DocumentDetails-description">{{post.get_field('short_description')}}</p>
+  {% if post.get_field('full_document_details') %}
+  <div class="DocumentDetails-table">
+    {% for detail in post.get_field('full_document_details') %}
+      <div class="DocumentDetails-cell">
+        <div class="DocumentDetails-singleWrapper">
+          {{detail.a_single_full_document_detail}}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% include 'modules/GetStarted.twig' with {'classes': 'dark'} %}
+{% endblock %}

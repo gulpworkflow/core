@@ -1,0 +1,27 @@
+// ===================================================================================
+// Forms
+// -------------
+// Form Colors
+$form-input-background-color:     $base-background-color;
+$form-input-border:               2px solid $base-border-color;
+// Form Shadows
+$form-box-shadow:                  none; // eg: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus:            none; //eg: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+// A better designed select element (dropdows)
+$prettify-select-dropdown:         true;
+// CSS selectors - inputs
+$all-text-inputs: 'input[type=text],
+                   input[type=password],
+                   input[type=search],
+                   input[type=email],
+                   input[type=url],
+                   input[type=tel],
+                   input[type=date],
+                   input[type=number],
+                   input[type=time],
+                   textarea';
+// CSS selectors - buttons
+$all-buttons:     '.btn,
+                   button,
+                   input[type=submit],
+                   input[type=button]';

@@ -1,0 +1,64 @@
+// ===================================================================================
+// Type styles
+// ------------
+/* Good design relies on the consistent & intelligent use of a few type styles.
+   Define this core set of type styles below, and use them with purpose throughout
+   this interactive product.
+
+   It may be a good idea to avoid including color in these mixins. Color largely depends on
+   state, and therefore should be flexible (eg: link vs. title, active vs. visited, success vs. warning etc).
+   For some projects though, you should include color below.  You'll need to use your expertise
+   as a designer.
+*/
+@mixin header-1 {
+  font-family: "Brown-Bold";
+  font-size: $base-font-size * 1.6;
+  line-height: 1.2;
+
+  @include media-breakpoint-down(md) {
+    font-size: $base-font-size * 1.45;
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: $base-font-size * 1.2;
+  }
+}
+
+@mixin header-2 {
+  font-family: "Brown-Bold";
+  font-size: $base-font-size * 1.25;
+  line-height: 1.4;
+
+  @include media-breakpoint-down(md) {
+    font-size: $base-font-size * 1.15;
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: $base-font-size * 1.1;
+  }
+}
+
+@mixin header-3 {
+  font-family: "Brown-Bold";
+  font-size: $base-font-size;
+  line-height: 1.2;
+}
+
+@mixin label {
+  font-family: $bold-font-family;
+  font-size: $base-font-size * .8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@mixin body-copy-large {
+  font-family: $base-font-family;
+  font-size: $base-font-size * 1.15;
+  line-height: $base-line-height;
+}
+
+@mixin body-copy {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}

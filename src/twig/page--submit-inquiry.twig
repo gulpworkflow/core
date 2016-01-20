@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+
+{% block content %}
+{% block gfScripts %}
+  <script type='text/javascript' src='{{ site.url }}/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-content/plugins/gravityforms/js/jquery.json.js?ver=1.9.14'></script>
+  <script type='text/javascript'>
+  /* <![CDATA[ */
+  var gform_gravityforms = {"strings":{"invalid_file_extension":"This type of file is not allowed. Must be one of the following: ","delete_file":"Delete this file","in_progress":"in progress","file_exceeds_limit":"File exceeds size limit","illegal_extension":"This type of file is not allowed.","max_reached":"Maximum number of files reached","unknown_error":"There was a problem while saving the file on the server","currently_uploading":"Please wait for the uploading to complete","cancel":"Cancel","cancel_upload":"Cancel this upload","cancelled":"Cancelled"},"vars":{"images_url":"http:\/\/globaldocs.dev\/wp-content\/plugins\/gravityforms\/images"}};
+  /* ]]> */
+  </script>
+  <script type='text/javascript' src='{{ site.url }}/wp-content/plugins/gravityforms/js/gravityforms.min.js?ver=1.9.14'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-content/plugins/gravityforms/js/conditional_logic.min.js?ver=1.9.14'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-includes/js/plupload/plupload.full.min.js?ver=2.1.1'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-content/plugins/gravityforms/js/jquery.maskedinput.min.js?ver=1.9.14'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-content/plugins/gravityforms/js/chosen.jquery.min.js?ver=1.9.14'></script>
+  <script type='text/javascript' src='{{ site.url }}/wp-content/plugins/gravityforms/js/placeholders.jquery.min.js?ver=1.9.14'></script>
+{% endblock %}
+<section class="SubmitInquiry">
+	<div class="container" style="max-width:700px">
+  <h1 class="SubmitInquiry-title">Submit Inquiry</h1>
+		{{displaygform(1)}}
+	</div><!-- /content-wrapper -->
+</section>
+{% endblock %}

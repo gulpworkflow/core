@@ -1,0 +1,19 @@
+<!--Copyright {{"now"|date('Y')}}-->
+<section class="Footer container">
+  <div class="Footer-content">
+    <div class="Footer-brand">
+      <img class="Footer-logo" src="{{site.theme.link}}/img/Mark.svg" alt="Global Docs" style="#LogoType { color: #000 }">
+    </div>
+    <ul class="Footer-locations">
+      {% for location in locations %}
+      <li class="Footer-singleLocations">
+        <h3 class="Footer-locationTitle">{{location.name}}</h3>
+        <p class="Footer-locationContent">{{location.contactDetails}}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="Footer-copyright">
+  &copy; Global Docs {{ "now"|date("Y") }}. Site and brand by <a href="http://ripe.com" title="ripe | branding | web design | graphic design | print | Washington, DC" target="_blank">ripe</a>.
+  </div>
+</section>

@@ -1,0 +1,23 @@
+ <div class="Pagination">
+  {% if pagination.prev %}
+  <a class="Pagination-newer btn" href="{{pagination.prev.link}}">
+    <span class="Pagination-arrow">navigateleft</span>Newer
+  </a>
+  {% endif %}
+  <ul class="Pagination-pageList">
+    {% for page in pagination.pages %}
+    {% if page.link %}
+    <li class="Pagination-number">
+      <a href="{{page.link}}">{{page.title}}</a>
+    </li>
+    {% else %}
+    <li class="Pagination-connectorText">{{page.text}}</li>
+    {% endif %}
+    {% endfor %}
+  </ul><!-- END: pagination__page-list -->
+  {% if pagination.next %}
+  <a class="Pagination-older btn" href="{{pagination.next.link}}">
+    Older <span class="Pagination-arrow">navigateright</span>
+  </a>
+  {% endif %}
+</div> <!-- END: pagination -->

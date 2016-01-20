@@ -27,10 +27,14 @@ var concat       = require('gulp-concat-util');
 var gulpif       = require('gulp-if');
 var notify       = require('gulp-notify');
 var del          = require('del');
+var ncp          = require('ncp').ncp;
+
 // =======
 // Task Functionality:
 // We abstract our tasks to functions so we can require the meeat & bones elsewhere if necessary
 // =======
+ncp.limit = 16;
+
 var watchFiles = function() {
   taskSequence = [];
   for (var globName in config) {
@@ -44,15 +48,21 @@ var watchFiles = function() {
                               // http://bonsaiden.github.io/JavaScript-Garden/#function.closures
                               // See 'closures inside loops' and 'avoiding reference problem'
           gulp.task(globName, function(){
-            return gulp.src(config[globName]['src'])
+            /*return gulp.src(config[globName]['src'])
               .pipe(changed(config[globName]['dest'])) // Ignore unchanged files
               .pipe(gulpif(config[globName]["concat"], concat(config[globName]["fileName"])))
               .pipe(gulp.dest(config[globName]['dest']))
               .pipe(browserSync.reload({stream:true}))
               .pipe( notify({
                 message: "Processed " + globName
-              }));
-            })
+              }));*/
+            ncp(config[globName]['src'], config[globName]['dest'], function (err) {
+             if (err) {
+               return console.error(err);
+             }
+             console.log('Completed moving ' + globName);
+            });
+          })
         })(globName);
 
       }

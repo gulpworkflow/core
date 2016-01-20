@@ -1,0 +1,10 @@
+// ===================================================================================
+// Animations
+// -------------
+$base-duration:             250ms !default;
+$base-timing:               ease-out !default;
+$fastDuration:              100ms !default;
+$mediumDuration:            300ms !default;
+$slowDuration:              500ms !default;
+// --
+$default-transition-all:    all $base-duration $base-timing;

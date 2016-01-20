@@ -1,0 +1,60 @@
+
+<section class="GetStarted {{classes}}">
+  <div class="container">
+    <h1>{{getStarted.callTitle}}</h1>
+    <div class="Dropwdown-wrapper">
+      <a class="btn GetStarted-callBtn" href="mailto:Legalization@globaldocs.us?subject=New%20Customer%20Inquiry">
+        Send an email <!--<span class="icon--navigate-down">--></span>
+      </a>
+      <!--<div class="Dropdown return-email">
+        <div class="reply_options">
+          <b>reply by email:</b>
+          <ul class="pad">
+            <li>
+              <a href="mailto:info%40@globaldocs.us?subject=Bedroom%20%2B%20Utlities%20%2B%20Wifi&amp;body=%0A%0Ahttp://washingtondc.craigslist.org/nva/roo/5394261559.html%0a" class="mailapp">info@globaldocs.us</a>
+            </li>
+          </ul>
+          <div id="webmailinks">
+            <b>webmail links:</b>
+            <ul class="pad">
+              <li>
+              <a class="gmail" target="_blank" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=k5cbx-5394261559%40hous.craigslist.org&amp;su=Bedroom%20%2B%20Utlities%20%2B%20Wifi&amp;body=%0A%0Ahttp://washingtondc.craigslist.org/nva/roo/5394261559.html%0A">gmail</a>
+              </li>
+              <li>
+              <a class="yahoo" target="_blank" href="http://compose.mail.yahoo.com/?to=k5cbx-5394261559%40hous.craigslist.org&amp;subj=Bedroom%20%2B%20Utlities%20%2B%20Wifi&amp;body=http://washingtondc.craigslist.org/nva/roo/5394261559.html">yahoo mail</a>
+              </li>
+              <li>
+              <a class="msmail" target="_blank" href="https://mail.live.com/default.aspx?rru=compose&amp;to=k5cbx-5394261559%40hous.craigslist.org&amp;subject=Bedroom%20%2B%20Utlities%20%2B%20Wifi&amp;body=%0A%0Ahttp://washingtondc.craigslist.org/nva/roo/5394261559.html%0A">hotmail, outlook, live mail</a>
+              </li>
+              <li>
+              <a class="aol" target="_blank" href="http://mail.aol.com/mail/compose-message.aspx?to=k5cbx-5394261559%40hous.craigslist.org&amp;subject=Bedroom%20%2B%20Utlities%20%2B%20Wifi&amp;body=http://washingtondc.craigslist.org/nva/roo/5394261559.html">aol mail</a>
+              </li>
+            </ul>
+            <b>copy and paste into your email:</b>
+            <ul>
+             <li><div class="anonemail">info@globaldocs.us</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>-->
+    <h2>{{getStarted.phone}}</h2>
+    <div class="GetStarted-divider">
+      <span class="GetStarted-halfCircle">OR</span>
+    </div>
+    <div class="sectionLabel">Submit Inquiry</div>
+    <h1>What type of document would you like to send?</h1>
+    <div class="GetStarted-documentTypes">
+      {% for documentType in getStarted.documentTypes %}
+      <!--{{documentType.title}}-->
+      <div class="GetStarted-documentType">
+        <a class="GetStarted-documentLink" href="submit/?doctype={{documentType.title|url_encode}}">
+          <img class="GetStarted-documentIcon" src="{{documentType.icon}}">
+          <span class="GetStarted-documentName">{{documentType.title}}</span>
+        </a>
+        <a class="GetStarted-documentInfoLink" href="{{documentType.permalink}}">What's this?</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

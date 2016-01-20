@@ -1,0 +1,294 @@
+/*
+//=====
+name: "Fieldsets and Form Elements";
+slug: base/forms;
+description: [
+#Forms
+### Forms description here
+];
+usage: [
+ <fieldset>
+    <form>
+      <p><label for="text_field">Text Field:</label>
+        <input type="text" id="text_field" /></p>
+      <p><label for="text_area">Text Area:</label>
+        <textarea id="text_area"></textarea></p>
+      <p><label for="select_element">Select Element:</label>
+        <select name="select_element">
+          <optgroup label="Option Group 1">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </optgroup>
+          <optgroup label="Option Group 2">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </optgroup>
+      </select></p>
+      <p><label for="radio_buttons">Radio Buttons:</label>
+        <label>
+          <input type="radio" class="radio" name="radio_button" value="radio_1" /> Radio 1
+        </label>
+        <label>
+          <input type="radio" class="radio" name="radio_button" value="radio_2" /> Radio 2
+        </label>
+        <label>
+          <input type="radio" class="radio" name="radio_button" value="radio_3" /> Radio 3
+        </label>
+      </p>
+      <p><label for="checkboxes">Checkboxes:</label>
+        <label>
+          <input type="checkbox" class="checkbox" name="checkboxes" value="check_1" /> Checkbox 1
+        </label>
+        <label>
+          <input type="checkbox" class="checkbox" name="checkboxes" value="check_2" /> Checkbox 2
+        </label>
+        <label>
+          <input type="checkbox" class="checkbox" name="checkboxes" value="check_3" /> Checkbox 3
+        </label>
+      </p>
+      <p><label for="password">Password:</label>
+        <input type="password" class="password" name="password" />
+      </p>
+      <p><label for="file">File Input:</label>
+        <input type="file" class="file" name="file" />
+      </p>
+      <p><input type="submit" value="Submit" /></p>
+    </form>
+  </fieldset>
+];
+=====//
+ */
+
+// ===================================================================================
+//  Variables
+// -------------
+// Form Colors
+$form-input-background-color:     $base-background-color !default;
+$form-input-border:               2px solid $base-border-color !default;
+// Form Shadows
+$form-box-shadow:                  none !default; // eg: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus:            none !default; //eg: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+// A better designed select element (dropdows)
+$prettify-select-dropdown:         true;
+// CSS selectors - inputs
+$all-text-inputs: 'input[type=text],
+                   input[type=password],
+                   input[type=search],
+                   input[type=email],
+                   input[type=url],
+                   input[type=tel],
+                   input[type=date],
+                   input[type=number],
+                   input[type=time],
+                   textarea' !default;
+
+// ===================================================================================
+//  Field Groups
+// -------------
+fieldset {
+  background-color: $secondary-background-color;
+  border: $base-border;
+  margin: 0 0 $small-spacing;
+  padding: $base-spacing;
+}
+
+input,
+label,
+select {
+  display: block;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: $small-spacing / 2;
+
+  &.required::after {
+    content: "*";
+  }
+
+  abbr {
+    display: none;
+  }
+}
+
+// ===================================================================================
+// Text Inputs
+// -------------
+#{$all-text-inputs},
+select[multiple=multiple],
+select {
+  background-color: $form-input-background-color;
+  border: $form-input-border;
+  border-radius: $base-border-radius;
+  box-shadow: $form-box-shadow;
+  box-sizing: border-box;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  margin-bottom: $small-spacing;
+  padding: $base-spacing / 3;
+  transition: border-color $base-duration $base-timing;
+  width: 100%;
+
+  &:hover {
+    border-color: shade($base-border-color, 20%);
+  }
+
+  &:focus {
+    border-color: $ui-color-action;
+    box-shadow: $form-box-shadow-focus;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: shade($base-background-color, 5%);
+    cursor: not-allowed;
+
+    &:hover {
+      border: $base-border;
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="search"] {
+  appearance: none;
+}
+
+// ===================================================================================
+// Checkbox / Radio
+// -------------
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline;
+  margin-right: $small-spacing / 2;
+
+  + label {
+    display: inline-block;
+  }
+}
+
+input[type="file"] {
+  margin-bottom: $small-spacing;
+  width: 100%;
+}
+
+select {
+  margin-bottom: $base-spacing;
+  max-width: 100%;
+  width: auto;
+}
+
+// ===================================================================================
+// Select
+// -------------
+
+/*.select {
+  position: relative;
+  display: inline-block;
+  color: #555;
+}
+.select */
+select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+/* Undo the Firefox inner focus ring */
+select:focus:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+/* Dropdown arrow */
+select:after {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  display: inline-block;
+  content: "";
+  width: 0;
+  height: 0;
+  margin-top: -.15rem;
+  pointer-events: none;
+  border-top: .35rem solid;
+  border-right: .35rem solid transparent;
+  border-bottom: .35rem solid transparent;
+  border-left: .35rem solid transparent;
+}
+
+/* Hover state */
+/* Uncomment if you need it, but be aware of the sticky iOS states.
+.select select:hover {
+  background-color: #ddd;
+}
+*/
+
+/* Focus */
+select:focus {
+  box-shadow: 0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9;
+}
+
+/* Active/open */
+.select:active {
+  color: #fff;
+  background-color: #0074d9;
+}
+
+/* Hide the arrow in IE10 and up */
+select::-ms-expand {
+  display: none;
+}
+
+/* Media query to target Firefox only */
+@-moz-document url-prefix() {
+  /* Firefox hack to hide the arrow */
+  select {
+    text-indent: 0.01px;
+    text-overflow: '';
+    padding-right: 1rem;
+  }
+
+  /* <option> elements inherit styles from <select>, so reset them. */
+  option {
+    background-color: #fff;
+  }
+}
+
+/* IE9 hack to hide the arrow */
+@media screen and (min-width:0\0) {
+  select {
+    z-index: 1;
+    padding: .5rem 1.5rem .5rem 1rem;
+  }
+  select:after {
+    z-index: 5;
+  }
+  select:before {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    bottom: 0;
+    z-index: 2;
+    content: "";
+    display: block;
+    width: 1.5rem;
+    background-color: #eee;
+  }
+  select:hover,
+  select:focus,
+  select:active {
+    color: #555;
+    background-color: #eee;
+  }
+}

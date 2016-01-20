@@ -1,0 +1,34 @@
+// ===================================================================================
+// Color
+// -------------
+// Color Palette
+$brand-primary-color:               #89A3C3;
+$brand-secondary-color:             #3A434B;
+$dark-gray:                         #333;
+$medium-gray:                       #D8E1EC;
+$light-gray:                        #EDF1F5;
+$white:                             #F9FBFB;
+$orange:                            #F1955C;
+// Font Colors
+$base-font-color:                   $dark-gray;
+// Border Color/Style
+$base-border-color:                 $medium-gray;
+$base-border:                       1px solid $base-border-color;
+// Background Colors
+$base-background-color:             #fff;
+$secondary-background-color:        tint($base-border-color, 75%);
+// UI Action
+$ui-color-action:                   $orange;
+$ui-color-action-hover:             $brand-secondary-color;
+// UI Success
+$ui-color-success:                  #39b25d;
+$ui-color-success-hover:            tint($ui-color-success, 75%);
+// UI Info
+$ui-color-info:                     #3498db;
+$ui-color-info-hover:               tint($ui-color-info, 75%);
+// UI Warning
+$ui-color-warning:                  #f3a51b;
+$ui-color-warning-hover:            tint($ui-color-warning, 75%);
+// UI Error
+$ui-color-error:                    #ee5f49;
+$ui-color-warning-error:            tint($ui-color-error, 75%);
