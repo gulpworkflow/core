@@ -1,0 +1,17 @@
+compile-sass:
+  # ---
+  src: "./src/scss/*.scss"                          # Source path(s) for the gulp-sass pipe
+  dest: "./build/css"                               # Path to write compiled CSS
+  # ---
+  clean: "./build/css/"                             # Which file(s) should be deleted each time before gulp runs?
+  # ---
+  autoprefix_browsers: ['last 2 version', 'ie 9']   # Browser settings based on gulp-autoprefixer config
+  settings:                                         # settings for gulp-sass
+    indentedSyntax: false                           # Set to true if you want to use sass indented syntax
+    errLogToConsole: errLogToConsole                #
+  # ---
+  watch_task:
+    enable: true                                    # Should a watch task be created?
+    src:
+      - "./src/scss/*.scss"                        # If so, what's the source (most likely same as task src)
+      - "./src/scss/**/*.scss"
