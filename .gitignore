@@ -11,3 +11,25 @@ npm-debug.log
 build/
 
 
+
+*.scss
+
+src/config.yml
+
+src/scss/00-base/_icons.scss
+
+src/scss/03-base/__all.scss
+
+src/scss/03-base/_icons.scss
+
+src/twig/base.twig
+
+src/twig/comment.twig
+
+src/twig/favicon.twig
+
+src/twig/home.twig
+
+src/twig/modules/GetStarted.twig
+
+src/twig/modules/NavBar.twig
